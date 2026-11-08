@@ -1,0 +1,25 @@
+# robots.txt — Dra. Kelly Barbi dos Santos Araújo (Pediatra em Mococa - SP)
+# TODO: Substituir https://SEU-DOMINIO.com.br pelo domínio definitivo após publicação
+
+User-agent: *
+Allow: /
+Disallow: /private/
+
+# Motores de IA e resposta generativa (AEO / GEO)
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://SEU-DOMINIO.com.br/sitemap.xml
+

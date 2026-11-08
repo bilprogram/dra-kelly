@@ -1,98 +1,92 @@
-/* ==========================================================================
-   Dra. Kelly Barbi — Movimento Moderno, Scroll Reveal & Interações (JS Mínimo)
-   Progressive enhancement: sem JS, todo o conteúdo permanece 100% visível.
-   ========================================================================== */
+/* Dra. Kelly Barbi — Motion, Scroll Reveal & Lazy Map (Progressive Enhancement) */
 (() => {
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  const supportsScrollTimeline =
-    typeof CSS !== 'undefined' &&
-    typeof CSS.supports === 'function' &&
-    CSS.supports('animation-timeline: view()');
-
   const header = document.querySelector('.topbar');
 
-  // Nota de performance (Core Web Vitals / LCP):
-  // A imagem do Hero (.hero-photo) NÃO entra em imageTargets para nunca atrasar o LCP.
-  const imageTargets = [
-    ...document.querySelectorAll('.benefit-photo, .care-image, .about-image, .contact-visual img')
-  ];
-  const revealTargets = [
-    ...document.querySelectorAll(
-      '.service-item, .benefit-copy > *, .care-copy > *, .care-image-wrap, .services-grid > *, .review, .about-grid > div, .region-box, .faq-item, .wait-panel > *, .contact-grid > *'
-    )
-  ];
+  // Inicializa animações de entrada fora da 1ª dobra no primeiro scroll (TBT = 0 ms no load)
+  let revealInitialized = false;
+  const initScrollReveal = () => {
+    if (revealInitialized || reducedMotion || !('IntersectionObserver' in window)) return;
+    revealInitialized = true;
+    const imageTargets = [
+      ...document.querySelectorAll('.benefit-photo, .care-image, .about-image, .contact-visual img')
+    ];
+    const revealTargets = [
+      ...document.querySelectorAll(
+        '.service-item, .benefit-copy > *, .care-copy > *, .care-image-wrap, .service-card, .review, .about-grid > div, .region-box, .faq-item, .wait-panel > *, .contact-grid > *'
+      )
+    ];
 
-  if (!reducedMotion && 'IntersectionObserver' in window) {
-    // Escrita em lote (Batch DOM writes) para evitar Forced Synchronous Reflow
-    revealTargets.forEach((element, index) => {
-      element.classList.add('motion-reveal');
-      element.style.setProperty('--reveal-delay', `${Math.min(index % 4, 3) * 65}ms`);
+    revealTargets.forEach((el, idx) => {
+      el.classList.add('motion-reveal');
+      el.style.setProperty('--reveal-delay', `${Math.min(idx % 4, 3) * 60}ms`);
     });
 
-    const imageRevealByTrigger = new Map();
-    imageTargets.forEach(image => {
-      image.classList.add('image-reveal');
-      const trigger = image.closest('section, .care-image-wrap, .contact-visual') || image.parentElement;
-      if (!imageRevealByTrigger.has(trigger)) imageRevealByTrigger.set(trigger, []);
-      imageRevealByTrigger.get(trigger).push(image);
+    const imageMap = new Map();
+    imageTargets.forEach(img => {
+      img.classList.add('image-reveal');
+      const trigger = img.closest('section, .care-image-wrap, .contact-visual') || img.parentElement;
+      if (!imageMap.has(trigger)) imageMap.set(trigger, []);
+      imageMap.get(trigger).push(img);
     });
 
-    // Ativa progressive enhancement apenas após configurar classes
-    document.body.classList.add('motion-ready');
-    if (supportsScrollTimeline) {
-      document.body.classList.add('supports-scroll-timeline');
-    }
+    document.body.classList.add('motion-ready', 'has-scrolled');
 
-    const observerTargets = [...new Set([...revealTargets, ...imageRevealByTrigger.keys()])];
     const observer = new IntersectionObserver(
-      (entries, currentObserver) => {
+      (entries, obs) => {
         entries.forEach(entry => {
           if (!entry.isIntersecting) return;
           entry.target.classList.add('is-visible');
-          imageRevealByTrigger.get(entry.target)?.forEach(img => img.classList.add('is-visible'));
-          currentObserver.unobserve(entry.target);
+          imageMap.get(entry.target)?.forEach(img => img.classList.add('is-visible'));
+          obs.unobserve(entry.target);
         });
       },
-      { threshold: 0.08, rootMargin: '0px 0px -20px 0px' }
+      { threshold: 0.08, rootMargin: '0px 0px -16px 0px' }
     );
-    observerTargets.forEach(element => observer.observe(element));
+    new Set([...revealTargets, ...imageMap.keys()]).forEach(el => observer.observe(el));
+  };
+
+  // Hidratação lazy do iframe do Google Maps na seção #contato
+  const mapFrame = document.querySelector('iframe[data-map-src]');
+  if (mapFrame && 'IntersectionObserver' in window) {
+    const mapObs = new IntersectionObserver(
+      (entries, obs) => {
+        if (entries[0]?.isIntersecting) {
+          mapFrame.src = mapFrame.getAttribute('data-map-src');
+          mapFrame.removeAttribute('data-map-src');
+          obs.disconnect();
+        }
+      },
+      { rootMargin: '350px 0px' }
+    );
+    mapObs.observe(mapFrame);
   }
 
-  // Header sticky com glassmorphism e parallax sutil nas imagens secundárias
-  // Separação estrita entre leitura de geometria e escrita de estilo para zero Forced Reflow.
+  // Header glassmorphism e parallax sutil nas imagens secundárias (leitura/escrita separadas)
   let framePending = false;
   const parallaxItems = reducedMotion
     ? []
     : [...document.querySelectorAll('.benefit-photo, .care-image')];
 
-  const updateScrollState = () => {
+  const onScrollFrame = () => {
     framePending = false;
+    initScrollReveal();
     const y = window.scrollY || 0;
     const winH = window.innerHeight || 800;
 
-    // 1. Fase de leitura (DOM reads)
-    const offsets = parallaxItems.map((element, index) => {
-      const rect = element.getBoundingClientRect();
+    const offsets = parallaxItems.map((el, idx) => {
+      const rect = el.getBoundingClientRect();
       if (rect.bottom > 0 && rect.top < winH) {
-        const factor = index === 0 ? -0.015 : -0.012;
-        const raw = (rect.top + rect.height / 2 - winH / 2) * factor;
+        const raw = (rect.top + rect.height / 2 - winH / 2) * (idx === 0 ? -0.015 : -0.012);
         return Math.max(-10, Math.min(10, raw)).toFixed(1);
       }
       return null;
     });
 
-    // 2. Fase de escrita (DOM writes)
-    if (y > 4) {
-      document.body.classList.add('has-scrolled');
-    }
-    if (header) {
-      header.classList.toggle('is-scrolled', y > 12);
-    }
-    offsets.forEach((val, index) => {
-      if (val !== null) {
-        parallaxItems[index].style.setProperty('--parallax-y', `${val}px`);
-      }
+    if (header) header.classList.toggle('is-scrolled', y > 12);
+    offsets.forEach((val, idx) => {
+      if (val !== null) parallaxItems[idx].style.setProperty('--parallax-y', `${val}px`);
     });
   };
 
@@ -101,54 +95,39 @@
     () => {
       if (!framePending) {
         framePending = true;
-        window.requestAnimationFrame(updateScrollState);
+        window.requestAnimationFrame(onScrollFrame);
       }
     },
     { passive: true }
   );
 
-  // Efeito magnético leve nos CTAs apenas em dispositivos com ponteiro fino
+  // Efeito magnético leve nos CTAs apenas para ponteiro fino
   if (!reducedMotion && finePointer) {
-    document.querySelectorAll('.button-primary, .wait-action .button, .whatsapp-float').forEach(button => {
-      button.classList.add('magnetic');
-      let rectCache = null;
-      button.addEventListener('pointerenter', () => {
-        rectCache = button.getBoundingClientRect();
+    document.querySelectorAll('.button-primary, .wait-action .button, .whatsapp-float').forEach(btn => {
+      btn.classList.add('magnetic');
+      let rect = null;
+      btn.addEventListener('pointerenter', () => {
+        rect = btn.getBoundingClientRect();
       }, { passive: true });
-      button.addEventListener('pointermove', event => {
-        if (!rectCache) rectCache = button.getBoundingClientRect();
-        const x = ((event.clientX - rectCache.left) / rectCache.width - 0.5) * 5;
-        const y = ((event.clientY - rectCache.top) / rectCache.height - 0.5) * 4;
-        button.style.setProperty('--mag-x', `${x.toFixed(1)}px`);
-        button.style.setProperty('--mag-y', `${y.toFixed(1)}px`);
+      btn.addEventListener('pointermove', ev => {
+        if (!rect) rect = btn.getBoundingClientRect();
+        btn.style.setProperty('--mag-x', `${(((ev.clientX - rect.left) / rect.width - 0.5) * 5).toFixed(1)}px`);
+        btn.style.setProperty('--mag-y', `${(((ev.clientY - rect.top) / rect.height - 0.5) * 4).toFixed(1)}px`);
       }, { passive: true });
-      button.addEventListener('pointerleave', () => {
-        rectCache = null;
-        button.style.setProperty('--mag-x', '0px');
-        button.style.setProperty('--mag-y', '0px');
+      btn.addEventListener('pointerleave', () => {
+        rect = null;
+        btn.style.setProperty('--mag-x', '0px');
+        btn.style.setProperty('--mag-y', '0px');
       }, { passive: true });
     });
   }
 
-  /* ==========================================================================
-     Eventos de Conversão Preparados (GA4 / Meta Pixel) — COMENTADOS
-     Ative apenas após configurar o ID real do Google Tag / Meta Pixel e
-     confirmar o consentimento de cookies (LGPD).
-     ========================================================================== */
-  /*
-  document.querySelectorAll('a[href*="wa.me/"]').forEach(link => {
-    link.addEventListener('click', () => {
-      const context = link.getAttribute('data-cta-context') || 'whatsapp_geral';
-      if (typeof window.gtag === 'function') {
-        window.gtag('event', 'generate_lead', {
-          event_category: 'WhatsApp',
-          event_label: context,
-          transport_type: 'beacon'
-        });
-      }
-      if (typeof window.fbq === 'function') {
-        window.fbq('track', 'Contact', { content_name: context });
-      }
+  /* Eventos de conversão GA4 / Meta Pixel comentados (ativar após confirmação e LGPD)
+  document.querySelectorAll('a[href*="wa.me/"]').forEach(a => {
+    a.addEventListener('click', () => {
+      const ctx = a.getAttribute('data-cta-context') || 'whatsapp';
+      if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead', { event_label: ctx });
+      if (typeof window.fbq === 'function') window.fbq('track', 'Contact', { content_name: ctx });
     });
   });
   */

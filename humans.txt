@@ -1,0 +1,12 @@
+/* TEAM */
+Médica Responsável: Dra. Kelly Barbi dos Santos Araújo
+Especialidade: Pediatria, Alergologia Pediátrica e Neurodesenvolvimento Infantil
+Localização: R. Alexandre Cunali, 143 – Jardim Santa Maria, Mococa - SP, 13730-270
+Contato: (19) 98936-2112
+Instagram: @dra.kellybarbi
+
+/* SITE */
+Idioma: Português do Brasil (pt-BR)
+Padrões: HTML5 Semântico, CSS3 Modern Motion, WCAG 2.1 AA, Schema.org JSON-LD (Physician, MedicalBusiness, FAQPage)
+Última atualização: 2026-11-08
+
