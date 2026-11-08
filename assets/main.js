@@ -1,17 +1,16 @@
-/* ==========================================================================
-   Dra. Kelly Barbi — Movimento Moderno: Scroll Reveal, Parallax Multi-Camada,
-   Barra de Progresso no Scroll, Spotlight Hover & Botões Magnéticos (60fps)
-   ========================================================================== */
+/* Dra. Kelly Barbi — Motion System (Scroll Reveal, Parallax, Progress, Spotlight & Magnetic) */
 (() => {
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   const header = document.querySelector('.topbar');
   const progressBar = document.querySelector('.scroll-progress');
 
-  // 1. Scroll Reveal Progressivo (Staggered Text, Listas, Cards, Pílulas e Imagens)
+  let revealInitialized = false;
   const setupReveal = () => {
-    if (reducedMotion || !('IntersectionObserver' in window)) return;
+    if (revealInitialized || reducedMotion || !('IntersectionObserver' in window)) return;
+    revealInitialized = true;
 
+    const winH = window.innerHeight || 800;
     const groups = [
       '.service-strip .service-item',
       '#cuidado .benefit-copy > .eyebrow, #cuidado .benefit-copy > h2, #cuidado .benefit-copy > p, #cuidado .benefit-copy > .button',
@@ -31,22 +30,6 @@
       '#contato .map-embed'
     ];
 
-    const revealElements = [];
-    groups.forEach(selector => {
-      document.querySelectorAll(selector).forEach((el, idx) => {
-        el.classList.add('motion-reveal');
-        el.style.setProperty('--reveal-delay', `${Math.min(idx, 5) * 75}ms`);
-        revealElements.push(el);
-      });
-    });
-
-    const imageTargets = [
-      ...document.querySelectorAll('.benefit-photo, .care-image, .about-image, .contact-visual img')
-    ];
-    imageTargets.forEach(img => img.classList.add('image-reveal'));
-
-    document.body.classList.add('motion-ready');
-
     const textObserver = new IntersectionObserver(
       (entries, obs) => {
         entries.forEach(entry => {
@@ -55,9 +38,30 @@
           obs.unobserve(entry.target);
         });
       },
-      { threshold: 0.12, rootMargin: '0px 0px -36px 0px' }
+      { threshold: 0.12, rootMargin: '0px 0px -32px 0px' }
     );
-    revealElements.forEach(el => textObserver.observe(el));
+
+    const textItems = [];
+    groups.forEach(selector => {
+      document.querySelectorAll(selector).forEach((el, idx) => {
+        textItems.push({ el, idx, top: el.getBoundingClientRect().top });
+      });
+    });
+
+    const imgItems = [...document.querySelectorAll('.benefit-photo, .care-image, .about-image, .contact-visual img')].map(img => ({
+      img,
+      top: img.getBoundingClientRect().top
+    }));
+
+    textItems.forEach(({ el, idx, top }) => {
+      el.classList.add('motion-reveal');
+      el.style.setProperty('--reveal-delay', `${Math.min(idx, 5) * 70}ms`);
+      if (top < winH * 0.86) {
+        el.classList.add('is-visible');
+      } else {
+        textObserver.observe(el);
+      }
+    });
 
     const imageObserver = new IntersectionObserver(
       (entries, obs) => {
@@ -67,19 +71,42 @@
           obs.unobserve(entry.target);
         });
       },
-      { threshold: 0.14, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.14, rootMargin: '0px 0px -36px 0px' }
     );
-    imageTargets.forEach(img => imageObserver.observe(img));
+
+    imgItems.forEach(({ img, top }) => {
+      img.classList.add('image-reveal');
+      if (top < winH * 0.86) {
+        img.classList.add('is-visible');
+      } else {
+        imageObserver.observe(img);
+      }
+    });
+
+    const navLinks = [...document.querySelectorAll('.nav-links a[href^="#"]:not(.button)')];
+    if (navLinks.length) {
+      const linkMap = new Map();
+      navLinks.forEach(link => {
+        const sec = document.getElementById(link.getAttribute('href').slice(1));
+        if (sec) linkMap.set(sec, link);
+      });
+      const spyObserver = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              navLinks.forEach(l => l.classList.remove('is-active'));
+              linkMap.get(entry.target)?.classList.add('is-active');
+            }
+          });
+        },
+        { rootMargin: '-35% 0px -55% 0px' }
+      );
+      linkMap.forEach((_, sec) => spyObserver.observe(sec));
+    }
+
+    document.body.classList.add('motion-ready');
   };
 
-  // Inicializa o reveal logo após o primeiro paint (não bloqueia LCP nem TBT)
-  if (document.readyState === 'complete') {
-    window.requestAnimationFrame(setupReveal);
-  } else {
-    window.addEventListener('load', () => window.requestAnimationFrame(setupReveal), { once: true });
-  }
-
-  // 2. Hidratação Lazy do Mapa na seção #contato
   const mapFrame = document.querySelector('iframe[data-map-src]');
   if (mapFrame && 'IntersectionObserver' in window) {
     const mapObs = new IntersectionObserver(
@@ -95,30 +122,6 @@
     mapObs.observe(mapFrame);
   }
 
-  // 3. Navegação Ativa por Seção (Scroll Spy leve via IntersectionObserver)
-  const navLinks = [...document.querySelectorAll('.nav-links a[href^="#"]:not(.button)')];
-  if (navLinks.length && 'IntersectionObserver' in window) {
-    const linkMap = new Map();
-    navLinks.forEach(link => {
-      const id = link.getAttribute('href').slice(1);
-      const sec = document.getElementById(id);
-      if (sec) linkMap.set(sec, link);
-    });
-    const spyObserver = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            navLinks.forEach(l => l.classList.remove('is-active'));
-            linkMap.get(entry.target)?.classList.add('is-active');
-          }
-        });
-      },
-      { rootMargin: '-35% 0px -55% 0px' }
-    );
-    linkMap.forEach((_, sec) => spyObserver.observe(sec));
-  }
-
-  // 4. Parallax Multi-Camada + Barra de Progresso no Scroll (Leitura/Escrita separadas)
   const parallaxLayers = reducedMotion
     ? []
     : [
@@ -136,12 +139,13 @@
   let framePending = false;
   const onScrollFrame = () => {
     framePending = false;
+    if (!revealInitialized) setupReveal();
+
     const y = window.scrollY || 0;
     const winH = window.innerHeight || 800;
     const docH = Math.max(document.documentElement.scrollHeight - winH, 1);
     const progress = Math.min(1, Math.max(0, y / docH));
 
-    // Fase 1: Leituras geométricas (DOM reads)
     const computed = parallaxLayers.map(item => {
       const rect = item.el.getBoundingClientRect();
       if (rect.bottom > -60 && rect.top < winH + 60) {
@@ -152,7 +156,6 @@
       return null;
     });
 
-    // Fase 2: Escritas de estilo na GPU (DOM writes)
     if (header) header.classList.toggle('is-scrolled', y > 12);
     if (progressBar) progressBar.style.setProperty('--scroll-progress', progress.toFixed(4));
 
@@ -176,9 +179,7 @@
     { passive: true }
   );
 
-  // 5. Hover Moderno: Spotlight Glow nos Cards + Botões Magnéticos (Ponteiro Fino)
   if (!reducedMotion && finePointer) {
-    // Spotlight interativo que segue o cursor nos cards
     document
       .querySelectorAll('.service-card, .review, .about-card, .region-box, .contact-row')
       .forEach(card => {
@@ -197,7 +198,6 @@
         }, { passive: true });
       });
 
-    // Efeito magnético nos botões e CTAs
     document
       .querySelectorAll('.button, .whatsapp-float')
       .forEach(btn => {
@@ -206,13 +206,7 @@
         btn.addEventListener('pointerenter', () => {
           rect = btn.getBoundingClientRect();
         }, { passive: true });
-        btn.addEventListener('pointermove', ev => {
-          if (!rect) rect = btn.getBoundingClientRect();
-          const mx = ((ev.clientX - rect.left) / rect.width - 0.5) * 7;
-          const my = ((ev.clientY - rect.top) / rect.height - 0.5) * 5;
-          btn.style.setProperty('--mag-x', `${mx.toFixed(1)}px`);
-          btn.style.setProperty('--mag-y', `${my.toFixed(1)}px`);
-        }, { passive: true });
+        cardOrBtnMove(btn, () => rect || (rect = btn.getBoundingClientRect()));
         btn.addEventListener('pointerleave', () => {
           rect = null;
           btn.style.setProperty('--mag-x', '0px');
@@ -221,13 +215,13 @@
       });
   }
 
-  /* Eventos de conversão GA4 / Meta Pixel comentados (ativar após confirmação e LGPD)
-  document.querySelectorAll('a[href*="wa.me/"]').forEach(a => {
-    a.addEventListener('click', () => {
-      const ctx = a.getAttribute('data-cta-context') || 'whatsapp';
-      if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead', { event_label: ctx });
-      if (typeof window.fbq === 'function') window.fbq('track', 'Contact', { content_name: ctx });
-    });
-  });
-  */
+  function cardOrBtnMove(btn, getRect) {
+    btn.addEventListener('pointermove', ev => {
+      const r = getRect();
+      const mx = ((ev.clientX - r.left) / r.width - 0.5) * 7;
+      const my = ((ev.clientY - r.top) / r.height - 0.5) * 5;
+      btn.style.setProperty('--mag-x', `${mx.toFixed(1)}px`);
+      btn.style.setProperty('--mag-y', `${my.toFixed(1)}px`);
+    }, { passive: true });
+  }
 })();

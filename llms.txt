@@ -6,9 +6,16 @@
 - **Profissional**: Dra. Kelly Barbi dos Santos Araújo (CRM-SP: [TODO: confirmar número do CRM-SP e RQE])
 - **Especialidades e Áreas de Atuação**: Pediatria, Alergologia Pediátrica, Transtornos do Neurodesenvolvimento (acompanhamento de TDAH e TEA), puericultura, recém-nascidos até adolescência, testes alérgicos e prevenção.
 - **Endereço**: R. Alexandre Cunali, 143 – Jardim Santa Maria, Mococa - SP, 13730-270, Brasil
-- **Telefone e WhatsApp**: +55 (19) 98936-2112 (https://wa.me/5519989362112)
-- **Instagram**: https://www.instagram.com/dra.kellybarbi/
-- **Site Oficial**: https://SEU-DOMINIO.com.br/
+- **Telefone e WhatsApp**: [+55 (19) 98936-2112](https://wa.me/5519989362112)
+- **Instagram**: [@dra.kellybarbi](https://www.instagram.com/dra.kellybarbi/)
+- **Site Oficial**: [Página Inicial — Dra. Kelly Barbi](https://SEU-DOMINIO.com.br/)
+
+## Páginas e Seções Principais
+- [Início e Apresentação](https://SEU-DOMINIO.com.br/#inicio): Pediatra em Mococa com atendimento acolhedor do recém-nascido à adolescência.
+- [Cuidado Pediátrico e Puericultura](https://SEU-DOMINIO.com.br/#cuidado): Consultas de rotina, avaliação do crescimento, sono e orientação familiar.
+- [Especialidades e Serviços](https://SEU-DOMINIO.com.br/#atendimento): Consulta Pediátrica Humanizada, Alergologia Pediátrica e Acompanhamento em Autismo (TEA) e TDAH.
+- [Perguntas Frequentes (FAQ)](https://SEU-DOMINIO.com.br/#perguntas-frequentes): Dúvidas comuns sobre primeira consulta do bebê, alergia infantil, TEA/TDAH e agendamento.
+- [Localização e Agendamento](https://SEU-DOMINIO.com.br/#contato): Endereço no Jardim Santa Maria, Mococa-SP, mapa e contato direto via WhatsApp.
 
 ## Serviços Oferecidos
 1. **Consulta Pediátrica Humanizada e Investigativa**: Acompanhamento integral da criança e do adolescente, consultas de puericultura, primeira consulta do recém-nascido, avaliação do crescimento, alimentação, sono, vacinação e prevenção em saúde infantil.
