@@ -83,6 +83,9 @@
     });
 
     // 2. Fase de escrita (DOM writes)
+    if (y > 4) {
+      document.body.classList.add('has-scrolled');
+    }
     if (header) {
       header.classList.toggle('is-scrolled', y > 12);
     }
