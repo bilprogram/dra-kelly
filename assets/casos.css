@@ -1,0 +1,586 @@
+/* =====================================================================
+   DOBRA 3: ESPECIALIDADES — CARROSSEL EM LEQUE (portado do site Dra. Gabriela Faria)
+   Portado 1:1 do site Thays Traboulsi; tokens mapeados para a paleta Dra. Kelly Barbi.
+   ===================================================================== */
+.casos.casos-secao {
+  /* mapeamento de tokens do design system de origem → marca Thays */
+  --areia: #f5eee8;
+  --rosa-profundo: #82566f;
+  --grafite: #2f272d;
+  --text-muted: #6b6068;
+  --cinza-metal: #b3aab0;
+  --font-display: "Fraunces", Georgia, serif;
+  --creme: #fbf8f4;
+  --font-body: "Nunito", system-ui, sans-serif;
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.9375rem;
+  --fs-body: 1.0625rem;
+  --fs-h2: clamp(2.5rem, 4.6vw, 3.6rem);
+  --lh-h2: 1.08;
+  --track-h2: -0.01em;
+  --track-eyebrow: 0.22em;
+  --r-pill: 999px;
+  --dur-fast: 0.3s;
+  --ease-natural: cubic-bezier(0.22, 1, 0.36, 1);
+  --gap-panel: 16px;
+  --pad-section-y: clamp(5rem, 9vw, 8.5rem);
+  --pad-panel-x: clamp(1.25rem, 3vw, 2rem);
+  --space-3: 1rem;
+}
+
+.casos.casos-secao {
+  --casos-cw: clamp(250px, 27vw, 372px);
+  --casos-ch: calc(var(--casos-cw) * 1.25);
+  --casos-topo: calc(var(--casos-cw) * 0.14);
+  --casos-raio: clamp(22px, 2.3vw, 32px);
+  --casos-largura: calc(min(100vw, 1600px) - 2 * var(--gap-panel) + 4px);
+  --casos-apoio: var(--text-muted);
+  background-color: var(--areia);
+  padding: var(--pad-section-y) var(--pad-panel-x);
+  position: relative;
+  overflow: clip;
+}
+
+.casos-nobr {
+  white-space: nowrap;
+}
+
+.casos-cabeca {
+  justify-items: center;
+  text-align: center;
+  max-width: 760px;
+  margin-inline: auto;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.casos-cabeca .tag {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--track-eyebrow);
+  text-transform: uppercase;
+  color: var(--rosa-profundo);
+  background: rgba(130, 86, 111, 0.14);
+  border: 1px solid rgba(130, 86, 111, 0.25);
+  padding: 6px 14px;
+  border-radius: var(--r-pill);
+}
+
+.casos-cabeca h2 {
+  font-family: var(--font-display);
+  font-size: min(var(--fs-h2), 8.4vw);
+  line-height: var(--lh-h2);
+  letter-spacing: var(--track-h2);
+  color: var(--grafite);
+}
+
+.casos-cabeca h2 .h-light {
+  color: var(--rosa-profundo);
+  font-weight: 400;
+  display: inline-block;
+}
+
+.casos-carrossel {
+  margin-top: clamp(22px, 2.4vw, 32px);
+  position: relative;
+}
+
+.casos-controles {
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  display: flex;
+}
+
+/* Botões pílula de navegação com gradiente suave na paleta Dra. Gabriela */
+.seta {
+  border-radius: var(--r-pill);
+  background: linear-gradient(110deg, var(--rosa-profundo) 0%, #6e4760 35%, #a87b95 50%, #6e4760 65%, var(--rosa-profundo) 100%);
+  color: #fff;
+  width: 56px;
+  height: 38px;
+  transition: transform var(--dur-fast) var(--ease-natural),
+              opacity var(--dur-fast) var(--ease-natural),
+              box-shadow var(--dur-fast) var(--ease-natural);
+  background-size: 250% 100%;
+  border: 0;
+  place-items: center;
+  display: grid;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(130, 86, 111, 0.28);
+}
+
+.seta svg {
+  width: 18px;
+  height: 18px;
+  stroke: #fff;
+  transition: transform var(--dur-fast) var(--ease-natural);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .seta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(130, 86, 111, 0.38);
+  }
+  .seta[data-dir="prev"]:hover svg {
+    transform: translate(-3px);
+  }
+  .seta[data-dir="next"]:hover svg {
+    transform: translate(3px);
+  }
+}
+
+.seta:focus-visible {
+  outline: 2px solid var(--rosa-profundo);
+  outline-offset: 3px;
+}
+
+.seta:disabled,
+.seta[aria-disabled="true"] {
+  opacity: 0.4;
+  cursor: default;
+  pointer-events: none;
+}
+
+.casos-contador {
+  min-width: 64px;
+  color: var(--casos-apoio);
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+  -webkit-user-select: none;
+  user-select: none;
+  justify-content: center;
+  align-items: baseline;
+  gap: 6px;
+  font-weight: 600;
+  line-height: 1.2;
+  display: inline-flex;
+}
+
+.casos-contador-atual {
+  color: var(--grafite);
+  display: inline-grid;
+  overflow: hidden;
+  font-weight: 700;
+  font-size: 1.0625rem;
+}
+
+.casos-contador-atual > span {
+  grid-area: 1/1;
+  display: block;
+}
+
+.casos-contador-sep {
+  color: var(--cinza-metal);
+  opacity: 0.6;
+}
+
+.casos-contador-total {
+  color: var(--casos-apoio);
+}
+
+/* Palco de cards do leque */
+.casos-palco {
+  width: var(--casos-largura);
+  height: calc(var(--casos-cw) * 1.5);
+  margin-top: clamp(8px, 1.4vw, 20px);
+  margin-left: calc(50% - var(--casos-largura) / 2);
+  -webkit-mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - var(--casos-cw) * 0.15), transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - var(--casos-cw) * 0.15), transparent 100%);
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+  outline: none;
+}
+
+.casos-deck {
+  position: absolute;
+  inset: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .casos-palco {
+    cursor: grab;
+  }
+  .casos-palco.is-arrastando,
+  .casos-palco.is-arrastando * {
+    cursor: grabbing;
+  }
+}
+
+.casos-card {
+  top: var(--casos-topo);
+  width: var(--casos-cw);
+  height: var(--casos-ch);
+  margin-left: calc(var(--casos-cw) / -2);
+  border-radius: var(--casos-raio);
+  transform-origin: 50%;
+  position: absolute;
+  left: 50%;
+  box-shadow: 0 42px 74px -32px rgba(43, 37, 35, 0.32),
+              0 16px 32px -16px rgba(43, 37, 35, 0.18);
+  container-type: inline-size;
+  contain: layout paint;
+}
+
+.casos-palco.is-arrastando .casos-card,
+.casos-palco.is-animando .casos-card {
+  will-change: transform, opacity;
+}
+
+/* Posições padrão estáticas de fallback (substituídas dinamicamente pelo JS) */
+.casos-card[data-pos="0"] {
+  z-index: 5;
+  transform: translateY(calc(var(--casos-cw) * -0.07));
+}
+
+.casos-card[data-pos="1"],
+.casos-card[data-pos="-1"] {
+  z-index: 4;
+}
+
+.casos-card[data-pos="1"] {
+  transform: translate(calc(var(--casos-cw) * 0.88), calc(var(--casos-cw) * 0.085)) rotate(11deg) scale(0.935);
+}
+
+.casos-card[data-pos="-1"] {
+  transform: translate(calc(var(--casos-cw) * -0.88), calc(var(--casos-cw) * 0.085)) rotate(-11deg) scale(0.935);
+}
+
+.casos-card[data-pos="2"],
+.casos-card[data-pos="-2"] {
+  z-index: 3;
+}
+
+.casos-card[data-pos="2"] .casos-card-topo,
+.casos-card[data-pos="-2"] .casos-card-topo {
+  opacity: 0;
+}
+
+.casos-card[data-pos="2"] {
+  transform: translate(calc(var(--casos-cw) * 1.73), calc(var(--casos-cw) * 0.34)) rotate(22deg) scale(0.87);
+}
+
+.casos-card[data-pos="-2"] {
+  transform: translate(calc(var(--casos-cw) * -1.73), calc(var(--casos-cw) * 0.34)) rotate(-22deg) scale(0.87);
+}
+
+.casos-card-in {
+  border-radius: inherit;
+  isolation: isolate;
+  background: var(--creme);
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.casos-card-media {
+  position: absolute;
+  inset: 0;
+}
+
+.casos-card-media picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+
+.casos-card-media img {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.75s var(--ease-natural);
+  -webkit-user-drag: none;
+  transform: scale(1.001);
+}
+
+.casos-card-media::after {
+  content: "";
+  background: linear-gradient(180deg, rgba(43, 37, 35, 0.42) 0%, rgba(43, 37, 35, 0) 38%);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.casos-card-veu {
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(245, 238, 232, 0.85) 0%, rgba(245, 238, 232, 0.95) 100%);
+  position: absolute;
+  inset: 0;
+}
+
+.casos-card-in::before {
+  content: "";
+  z-index: 2;
+  background: radial-gradient(circle at var(--casos-mx, 50%) var(--casos-my, 30%), rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 46%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s var(--ease-natural);
+  position: absolute;
+  inset: 0;
+}
+
+.casos-card-in::after {
+  content: "";
+  z-index: 4;
+  border-radius: inherit;
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 0 1px rgba(251, 246, 242, 0.28);
+}
+
+.casos-card.is-tilt .casos-card-in::before {
+  opacity: 1;
+}
+
+.casos-card.is-tilt .casos-card-media img,
+.casos-card.is-centro:focus-within .casos-card-media img {
+  transform: scale(1.04);
+}
+
+/* Badge no topo do card com título e texto */
+.casos-card-topo {
+  --casos-margem: clamp(10px, 3.8cqi, 14px);
+  top: var(--casos-margem);
+  right: var(--casos-margem);
+  left: var(--casos-margem);
+  z-index: 3;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: clamp(8px, 2.6cqi, 10px);
+  display: flex;
+  position: absolute;
+  transition: opacity 0.35s var(--ease-natural);
+}
+
+.casos-rotulo {
+  color: #fff;
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  backdrop-filter: blur(14px) saturate(1.2);
+  background: rgba(30, 24, 22, 0.72);
+  border: 1px solid rgba(251, 246, 242, 0.2);
+  border-radius: clamp(13px, 4.3cqi, 16px);
+  min-width: 0;
+  max-width: 82%;
+  padding: clamp(10px, 3.2cqi, 12px) clamp(11px, 3.8cqi, 14px) clamp(11px, 3.5cqi, 13px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+}
+
+.casos-rotulo h3 {
+  color: #fff;
+  font-family: var(--font-display);
+  letter-spacing: -0.012em;
+  font-size: clamp(0.875rem, 4.35cqi, 1.0625rem);
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.casos-rotulo p {
+  color: rgba(251, 246, 242, 0.88);
+  font-family: var(--font-body);
+  text-wrap: pretty;
+  margin-top: 4px;
+  font-size: clamp(0.75rem, 3.3cqi, 0.8125rem);
+  line-height: 1.4;
+}
+
+/* Botão circular no canto superior direito do card ativo */
+.casos-ir {
+  width: clamp(38px, 11.8cqi, 44px);
+  height: clamp(38px, 11.8cqi, 44px);
+  color: var(--grafite);
+  -webkit-user-drag: none;
+  transition: background-color 0.45s var(--ease-natural),
+              color 0.45s var(--ease-natural),
+              transform 0.45s var(--ease-natural);
+  background: var(--creme);
+  border-radius: 50%;
+  flex: none;
+  place-items: center;
+  display: grid;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(43, 37, 35, 0.22);
+  text-decoration: none;
+}
+
+.casos-ir svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  transition: transform 0.4s var(--ease-natural);
+  grid-area: 1/1;
+}
+
+.casos-ir svg + svg {
+  transform: translate(-150%, 150%);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .casos-card.is-centro .casos-ir:hover {
+    background: var(--rosa-profundo);
+    color: #fff;
+    transform: scale(1.06);
+  }
+  .casos-card.is-centro .casos-ir:hover svg:first-child {
+    transform: translate(150%, -150%);
+  }
+  .casos-card.is-centro .casos-ir:hover svg + svg {
+    transform: translate(0, 0);
+  }
+}
+
+.casos-ir:focus-visible {
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--rosa-profundo);
+  border-radius: 50%;
+  outline: 2px solid var(--creme);
+}
+
+.casos-card:not(.is-centro) {
+  cursor: pointer;
+}
+
+.casos-card:not(.is-centro) .casos-ir {
+  pointer-events: none;
+}
+
+/* Rodapé da seção de cuidados com CTA integrado */
+.casos-rodape {
+  text-align: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 14px 22px;
+  margin-top: clamp(4px, 1vw, 12px);
+  display: flex;
+}
+
+.casos-rodape-texto {
+  color: var(--casos-apoio);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.5;
+}
+
+.casos-rodape-texto strong {
+  color: var(--grafite);
+  font-weight: 600;
+}
+
+/* Responsivo para mobile */
+@media (max-width: 720px) {
+  .casos {
+    --casos-cw: min(62vw, 268px);
+    --casos-raio: 22px;
+    padding: clamp(3.5rem, 8vw, 5rem) var(--pad-panel-x);
+  }
+  .casos-card {
+    box-shadow: 0 28px 50px -24px rgba(43, 37, 35, 0.32),
+                0 10px 20px -12px rgba(43, 37, 35, 0.18);
+  }
+  .casos-card[data-pos="1"] {
+    transform: translate(calc(var(--casos-cw) * 0.8), calc(var(--casos-cw) * 0.063)) rotate(9deg) scale(0.935);
+  }
+  .casos-card[data-pos="-1"] {
+    transform: translate(calc(var(--casos-cw) * -0.8), calc(var(--casos-cw) * 0.063)) rotate(-9deg) scale(0.935);
+  }
+  .casos-card[data-pos="2"] {
+    transform: translate(calc(var(--casos-cw) * 1.58), calc(var(--casos-cw) * 0.25)) rotate(18deg) scale(0.87);
+  }
+  .casos-card[data-pos="-2"] {
+    transform: translate(calc(var(--casos-cw) * -1.58), calc(var(--casos-cw) * 0.25)) rotate(-18deg) scale(0.87);
+  }
+  .casos-card[data-pos="1"] .casos-card-topo,
+  .casos-card[data-pos="-1"] .casos-card-topo {
+    opacity: 0;
+  }
+  .casos-ir svg {
+    width: 16px;
+    height: 16px;
+  }
+  .casos-rodape {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .casos-rodape-texto {
+    max-width: 32ch;
+    font-size: var(--fs-sm);
+  }
+  .casos-rodape-texto strong {
+    font-size: var(--fs-body);
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .casos-card-media img,
+  .casos-ir,
+  .casos-ir svg,
+  .seta {
+    transition: none !important;
+  }
+}
+
+/* Botão do rodapé (equivalente ao .btn.btn--primary de origem) */
+.btn-casos {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  min-height: 52px;
+  padding: 0.75rem 1.75rem;
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--rosa-profundo);
+  background-color: var(--rosa-profundo);
+  color: var(--creme);
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--dur-fast) var(--ease-natural);
+  box-shadow: 0 10px 30px -12px rgba(130, 86, 111, 0.65);
+}
+.btn-casos::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--grafite);
+  transform: translateY(100%);
+  transition: transform 0.45s var(--ease-natural);
+  z-index: 0;
+}
+.btn-casos:hover::before { transform: translateY(0); }
+.btn-casos > * { position: relative; z-index: 1; }
+.btn-casos:active { transform: scale(0.98); }
+
+/* Títulos dos cards: serifa encorpada da marca (Italiana fica fina demais sobre o vidro escuro) */
+.casos-secao .casos-rotulo h3 {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 450;
+  font-size: clamp(1.05rem, 5.2cqi, 1.3rem);
+  letter-spacing: 0;
+  line-height: 1.15;
+}
+
+/* ajustes Dra. Kelly */
+.casos-cabeca h2 { font-weight: 300; margin: 0 }
+.casos-cabeca h2 .h-light { font-weight: 300 }
+.casos-intro { margin: 6px 0 0; max-width: 40rem; line-height: 1.75; color: var(--text-muted) }
+.casos-secao .wrap { max-width: none; padding: 0 }

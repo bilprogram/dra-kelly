@@ -21,7 +21,8 @@
   <link rel="manifest" href="site.webmanifest">
 
   <!-- FASE 2 – Preload prioritário da imagem LCP do Hero (AVIF responsivo) e da fonte principal -->
-  <link rel="preload" as="image" type="image/avif" imagesrcset="assets/pediatra-em-mococa-dra-kelly-barbi-480w.avif 480w, assets/pediatra-em-mococa-dra-kelly-barbi-768w.avif 768w, assets/pediatra-em-mococa-dra-kelly-barbi-1066w.avif 1066w" imagesizes="(max-width: 600px) 270px, (max-width: 900px) 480px, 435px" fetchpriority="high">
+  <link rel="preload" as="image" type="image/avif" imagesrcset="assets/hero-dra-kelly-barbi-1280.avif 1280w, assets/hero-dra-kelly-barbi-1920.avif 1920w, assets/hero-dra-kelly-barbi-2752.avif 2752w" imagesizes="100vw" fetchpriority="high" media="(min-width: 761px)">
+  <link rel="preload" as="image" type="image/avif" imagesrcset="assets/hero-mobile-dra-kelly-barbi-828.avif 828w, assets/hero-mobile-dra-kelly-barbi-1229.avif 1229w" imagesizes="100vw" fetchpriority="high" media="(max-width: 760px)">
   <link rel="preload" href="fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- Open Graph & Twitter Card (1200x630 com logo e identidade da marca) -->
@@ -78,6 +79,8 @@
     @media(max-width:340px){.service-items{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px 8px}.service-item{font-size:.74rem;gap:6px}.service-item .bubble{width:30px;height:30px}.service-strip .wrap{width:calc(100% - 34px)}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}.motion-reveal,.motion-reveal.is-visible{opacity:1!important;transform:none!important}.image-reveal,.image-reveal.is-visible,.benefit-photo,.care-image{opacity:1!important;filter:none!important;scale:1!important;clip-path:none!important;translate:none!important;will-change:auto!important}.button,.button:hover,.button:active,.whatsapp-float,.whatsapp-float:hover,.service-card:hover,.review:hover,.about-card:hover,.pill:hover,.contact-row,.service-item .bubble,.brand-mark,.hero-photo:hover,.benefit-photo:hover,.care-image:hover,.about-image:hover,.contact-visual img:hover{transform:none!important;scale:1!important;translate:none!important;will-change:auto!important}}
   </style>
+  <link rel="stylesheet" href="assets/premium.css">
+  <link rel="stylesheet" href="assets/casos.css">
 
   <!-- FASE 4 – Dados Estruturados JSON-LD: Physician + MedicalBusiness/LocalBusiness + FAQPage + BreadcrumbList (sem AggregateRating auto-publicado) -->
   <!-- TODO: Confirmar horário exato de funcionamento e número de CRM-SP/RQE para inclusão opcional -->
@@ -249,6 +252,7 @@
 
   <main>
     <section class="hero" id="inicio">
+      <div class="hero-bg" aria-hidden="true"></div>
       <div class="wrap hero-grid">
         <div class="hero-copy">
           <span class="eyebrow">Pediatria e Alergologia em Mococa · SP</span>
@@ -259,6 +263,11 @@
             <a class="button button-light" href="#atendimento">Conhecer o atendimento</a>
           </div>
           <div class="place-line"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.8"/></svg>R. Alexandre Cunali, 143 · Jardim Santa Maria · Mococa, SP</div>
+          <ul class="hero-stats" aria-label="Destaques">
+            <li><strong data-count="5,0">5,0</strong><span>Nota no Google</span></li>
+            <li><strong data-count="76">76</strong><span>Avaliações de famílias</span></li>
+            <li><strong>Infância</strong><span>Do recém-nascido à adolescência</span></li>
+          </ul>
         </div>
         <div class="hero-art">
           <picture>
@@ -268,6 +277,7 @@
           </picture>
           <svg class="star-doodle" viewBox="0 0 100 88" fill="none" aria-hidden="true"><path d="M50 4 60 34l32 2-25 19 9 30-26-18-27 18 10-30L7 36l32-2L50 4Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><circle cx="51" cy="49" r="6" fill="#ead9df"/></svg>
           <div class="dots" aria-hidden="true"></div>
+          <div class="hero-rating"><span class="stars" aria-hidden="true">★★★★★</span><span><b>5,0</b> · 76 avaliações no Google</span></div>
           <div class="photo-note"><strong>Escuta que acolhe.</strong><span>Orientação clara para mães, pais e cuidadores.</span></div>
         </div>
       </div>
@@ -282,199 +292,309 @@
       </div>
     </div>
 
-    <section class="benefits" id="cuidado">
-      <div class="wrap benefit-layout">
-        <picture>
-          <source type="image/avif" srcset="assets/desenvolvimento-infantil-pediatra-mococa-480w.avif 480w, assets/desenvolvimento-infantil-pediatra-mococa-768w.avif 768w, assets/desenvolvimento-infantil-pediatra-mococa-1066w.avif 1066w" sizes="(max-width: 600px) 270px, (max-width: 900px) 480px, 480px">
-          <source type="image/webp" srcset="assets/desenvolvimento-infantil-pediatra-mococa-480w.webp 480w, assets/desenvolvimento-infantil-pediatra-mococa-768w.webp 768w, assets/desenvolvimento-infantil-pediatra-mococa-1066w.webp 1066w" sizes="(max-width: 600px) 270px, (max-width: 900px) 480px, 480px">
+    <section class="benefits kb2" id="cuidado">
+      <div class="wrap">
+        <header class="kb2-head">
+          <div class="kb2-title">
+            <span class="eyebrow">Um cuidado que olha a criança por inteiro</span>
+            <h2>Puericultura e acompanhamento pediátrico do recém-nascido à adolescência.</h2>
+          </div>
+          <div class="kb2-intro">
+            <p>Na consulta pediátrica em Mococa, a família encontra espaço para contar, perguntar e compreender os próximos passos do cuidado, com atenção à história, à prevenção e às necessidades individuais de cada criança.</p>
+            <a class="button button-primary" href="https://wa.me/5519989362112?text=Ol%C3%A1%2C%20gostaria%20de%20tirar%20uma%20d%C3%BAvida%20sobre%20puericultura%20e%20consulta%20pedi%C3%A1trica%20em%20Mococa." target="_blank" rel="noopener" data-cta-context="whatsapp_cuidado">Tirar dúvidas pelo WhatsApp</a>
+          </div>
+        </header>
+        <div class="kb2-grid">
+          <figure class="kb2-media">
+            <picture>
+          <source type="image/avif" srcset="assets/desenvolvimento-infantil-pediatra-mococa-480w.avif 480w, assets/desenvolvimento-infantil-pediatra-mococa-768w.avif 768w, assets/desenvolvimento-infantil-pediatra-mococa-1066w.avif 1066w" sizes="(max-width: 760px) 92vw, 520px">
+          <source type="image/webp" srcset="assets/desenvolvimento-infantil-pediatra-mococa-480w.webp 480w, assets/desenvolvimento-infantil-pediatra-mococa-768w.webp 768w, assets/desenvolvimento-infantil-pediatra-mococa-1066w.webp 1066w" sizes="(max-width: 760px) 92vw, 520px">
           <img class="benefit-photo" src="assets/desenvolvimento-infantil-pediatra-mococa.webp" alt="Mãos da pediatra e de uma criança explorando um brinquedo educativo durante avaliação do desenvolvimento infantil em Mococa" width="1066" height="1600" loading="lazy" decoding="async">
         </picture>
-        <div class="benefit-copy">
-          <span class="eyebrow">Um cuidado que olha a criança por inteiro</span>
-          <h2>Puericultura e acompanhamento pediátrico do recém-nascido à adolescência.</h2>
-          <p>Na consulta pediátrica em Mococa, a família encontra espaço para contar, perguntar e compreender os próximos passos do cuidado, com atenção à história, à prevenção e às necessidades individuais de cada criança.</p>
-          <ul class="benefit-list">
-            <li><span class="check" aria-hidden="true">✓</span><span><strong>Escuta humanizada e investigativa</strong><span>Uma conversa cuidadosa para compreender dúvidas, rotina de sono, alimentação, imunidade e desenvolvimento.</span></span></li>
-            <li><span class="check" aria-hidden="true">✓</span><span><strong>Da consulta de recém-nascido à adolescência</strong><span>Puericultura estruturada para acompanhar ganho de peso, crescimento, vacinação e prevenção em cada fase.</span></span></li>
-            <li><span class="check" aria-hidden="true">✓</span><span><strong>Alergologia pediátrica e testes alérgicos</strong><span>Investigação cuidadosa de rinite, asma, dermatite atópica e alergias alimentares na infância.</span></span></li>
-            <li><span class="check" aria-hidden="true">✓</span><span><strong>Atenção ao neurodesenvolvimento (TEA e TDAH)</strong><span>Avaliação e acompanhamento pediátrico em autismo e transtornos de atenção em parceria com a família.</span></span></li>
+            <figcaption class="kb2-badge"><span class="kb2-badge-dot" aria-hidden="true"></span><span><b>Puericultura</b>Crescimento acompanhado de perto, consulta a consulta.</span></figcaption>
+          </figure>
+          <ul class="kb2-cards">
+            <li class="kb2-card kb2-card--accent" style="--d:0">
+              <div class="kb2-card-top"><span class="kb2-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7.5-4.3-7.5-10.4A4.2 4.2 0 0 1 12 8a4.2 4.2 0 0 1 7.5 2.6C19.5 16.7 12 21 12 21Z"/></svg></span><span class="kb2-num" aria-hidden="true">01</span></div>
+              <h3>Escuta humanizada e investigativa</h3>
+              <p>Uma conversa cuidadosa para compreender dúvidas, rotina de sono, alimentação, imunidade e desenvolvimento.</p>
+            </li>
+            <li class="kb2-card" style="--d:1">
+              <div class="kb2-card-top"><span class="kb2-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="3.2"/><path d="M6.5 20.5c0-4 2.5-6.8 5.5-6.8s5.5 2.8 5.5 6.8"/><path d="M9.5 17.5h5"/></svg></span><span class="kb2-num" aria-hidden="true">02</span></div>
+              <h3>Da consulta de recém-nascido à adolescência</h3>
+              <p>Puericultura estruturada para acompanhar ganho de peso, crescimento, vacinação e prevenção em cada fase.</p>
+            </li>
+            <li class="kb2-card" style="--d:2">
+              <div class="kb2-card-top"><span class="kb2-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c0-8 5-13 14-14-1 9-6 14-14 14Z"/><path d="M5 19l7-7"/></svg></span><span class="kb2-num" aria-hidden="true">03</span></div>
+              <h3>Alergologia pediátrica e testes alérgicos</h3>
+              <p>Investigação cuidadosa de rinite, asma, dermatite atópica e alergias alimentares na infância.</p>
+            </li>
+            <li class="kb2-card" style="--d:3">
+              <div class="kb2-card-top"><span class="kb2-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 4.5a3 3 0 0 0-3 3 3 3 0 0 0-2 5.3A3 3 0 0 0 7 17.5a2.5 2.5 0 0 0 5 .5V6.5a2 2 0 0 0-2.5-2Z"/><path d="M14.5 4.5a3 3 0 0 1 3 3 3 3 0 0 1 2 5.3 3 3 0 0 1-2.5 4.7 2.5 2.5 0 0 1-5 .5"/></svg></span><span class="kb2-num" aria-hidden="true">04</span></div>
+              <h3>Atenção ao neurodesenvolvimento (TEA e TDAH)</h3>
+              <p>Avaliação e acompanhamento pediátrico em autismo e transtornos de atenção em parceria com a família.</p>
+            </li>
           </ul>
-          <a class="button button-primary" href="https://wa.me/5519989362112?text=Ol%C3%A1%2C%20gostaria%20de%20tirar%20uma%20d%C3%BAvida%20sobre%20puericultura%20e%20consulta%20pedi%C3%A1trica%20em%20Mococa." target="_blank" rel="noopener" data-cta-context="whatsapp_cuidado">Tirar dúvidas pelo WhatsApp</a>
         </div>
       </div>
     </section>
 
-    <section class="care" id="atendimento">
+    <section class="casos casos-secao" id="atendimento" aria-labelledby="casos-titulo">
       <div class="wrap">
-        <div class="care-grid">
-          <div class="care-copy">
-            <span class="eyebrow">Especialidades e Serviços em Mococa</span>
-            <h2>Alergologia pediátrica, puericultura e neurodesenvolvimento infantil.</h2>
-            <p>Cada criança tem seu próprio ritmo e sua história. O atendimento começa com uma conversa aberta e uma avaliação clínica individualizada, para que responsáveis e médica possam planejar juntos os cuidados preventivos e investigativos.</p>
-            <div class="care-pills" aria-label="Áreas de atuação">
-              <span class="pill">Puericultura</span>
-              <span class="pill">Recém-nascidos à adolescência</span>
-              <span class="pill">Alergologia pediátrica</span>
-              <span class="pill">Testes alérgicos e prevenção</span>
-              <span class="pill">Acompanhamento de TDAH e TEA</span>
-            </div>
-            <p>Quando indicado, a equipe orienta a família sobre exames, testes alérgicos ou acompanhamento multidisciplinar. Dúvidas sobre indicação ou disponibilidade? Fale diretamente com o consultório.</p>
-            <a class="button button-primary" href="https://wa.me/5519989362112?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20as%20consultas%20e%20especialidades%20da%20Dra.%20Kelly%20Barbi." target="_blank" rel="noopener" data-cta-context="whatsapp_atendimento">Conversar sobre o atendimento</a>
-          </div>
-          <div class="care-image-wrap">
-            <picture>
-              <source type="image/avif" srcset="assets/consulta-pediatrica-alergologia-mococa-480w.avif 480w, assets/consulta-pediatrica-alergologia-mococa-768w.avif 768w, assets/consulta-pediatrica-alergologia-mococa-1066w.avif 1066w" sizes="(max-width: 600px) 270px, (max-width: 900px) 480px, 560px">
-              <source type="image/webp" srcset="assets/consulta-pediatrica-alergologia-mococa-480w.webp 480w, assets/consulta-pediatrica-alergologia-mococa-768w.webp 768w, assets/consulta-pediatrica-alergologia-mococa-1066w.webp 1066w" sizes="(max-width: 600px) 270px, (max-width: 900px) 480px, 560px">
-              <img class="care-image" src="assets/consulta-pediatrica-alergologia-mococa.webp" alt="Dra. Kelly Barbi interagindo com uma criança durante consulta pediátrica no consultório em Mococa" width="1066" height="1600" loading="lazy" decoding="async">
-            </picture>
-            <div class="care-tag">Presença, cuidado e orientação</div>
-          </div>
+        <div class="casos-cabeca">
+          <span class="tag">Especialidades e Serviços em Mococa</span>
+          <h2 id="casos-titulo">Alergologia, puericultura<br><span class="h-light">e neurodesenvolvimento infantil.</span></h2>
+          <p class="casos-intro">Cada criança tem seu próprio ritmo e sua história. O atendimento começa com uma conversa aberta e uma avaliação clínica individualizada, para que responsáveis e médica possam planejar juntos os cuidados preventivos e investigativos.</p>
         </div>
-
-        <!-- FASE 4 & 5 – Serviços estruturados com H3 semânticos e links de WhatsApp contextuais -->
-        <div class="services-grid" aria-label="Serviços oferecidos no consultório">
-          <article class="service-card">
-            <div>
-              <h3>Consulta Pediátrica Humanizada e Investigativa</h3>
-              <p>Acompanhamento de puericultura desde a primeira consulta de recém-nascido até a adolescência. Avaliação detalhada do crescimento, alimentação, sono, imunidade, vacinação e prevenção em todas as fases da infância.</p>
+        <div class="casos-carrossel" role="region" aria-roledescription="carrossel" aria-label="Especialidades da Dra. Kelly Barbi" data-casos-carrossel>
+          <div class="casos-controles">
+            <button type="button" class="seta casos-seta" data-dir="prev" aria-controls="casos-deck" aria-label="Especialidade anterior"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+            <p class="casos-contador" aria-hidden="true"><span class="casos-contador-atual"><span>01</span></span><span class="casos-contador-sep">/</span><span class="casos-contador-total">05</span></p>
+            <button type="button" class="seta casos-seta" data-dir="next" aria-controls="casos-deck" aria-label="Próxima especialidade"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
+          <p class="sr-only" aria-live="polite" aria-atomic="true" data-casos-status>1 de 5: Consulta pediátrica humanizada</p>
+          <div class="casos-palco" data-casos-palco>
+            <div class="casos-deck" id="casos-deck">
+              <article class="casos-card is-centro" data-pos="0" role="group" aria-roledescription="slide" aria-label="1 de 5: Consulta pediátrica humanizada">
+                <div class="casos-card-in">
+                  <div class="casos-card-media"><picture>
+                    <source type="image/avif" srcset="assets/kb-servico-consulta-480.avif 480w, assets/kb-servico-consulta-800.avif 800w" sizes="(max-width: 720px) 268px, 372px">
+                    <source type="image/webp" srcset="assets/kb-servico-consulta-480.webp 480w, assets/kb-servico-consulta-800.webp 800w" sizes="(max-width: 720px) 268px, 372px">
+                    <img src="assets/kb-servico-consulta-800.webp" alt="Dra. Kelly Barbi sorrindo com uma criança durante consulta pediátrica em Mococa" width="800" height="1000" loading="lazy" decoding="async" draggable="false">
+                  </picture></div>
+                  <span class="casos-card-veu" aria-hidden="true"></span>
+                  <div class="casos-card-topo">
+                    <div class="casos-rotulo"><h3>Consulta pediátrica humanizada</h3><p>Escuta atenta, exame cuidadoso e orientação clara sobre crescimento, sono, alimentação e imunidade.</p></div>
+                    <a class="casos-ir" href="https://wa.me/5519989362112?text=Ol%C3%A1%2C%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20a%20Consulta%20Pedi%C3%A1trica%20Humanizada%20e%20Investigativa%20com%20a%20Dra.%20Kelly%20Barbi." target="_blank" rel="noopener" aria-label="Falar sobre Consulta pediátrica humanizada no WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+                  </div>
+                </div>
+              </article>
+              <article class="casos-card" data-pos="1" role="group" aria-roledescription="slide" aria-label="2 de 5: Puericultura e recém-nascido">
+                <div class="casos-card-in">
+                  <div class="casos-card-media"><picture>
+                    <source type="image/avif" srcset="assets/kb-servico-puericultura-480.avif 480w, assets/kb-servico-puericultura-800.avif 800w" sizes="(max-width: 720px) 268px, 372px">
+                    <source type="image/webp" srcset="assets/kb-servico-puericultura-480.webp 480w, assets/kb-servico-puericultura-800.webp 800w" sizes="(max-width: 720px) 268px, 372px">
+                    <img src="assets/kb-servico-puericultura-800.webp" alt="Sala de atendimento pediátrico com balança de bebê no consultório da Dra. Kelly Barbi" width="800" height="1000" loading="lazy" decoding="async" draggable="false">
+                  </picture></div>
+                  <span class="casos-card-veu" aria-hidden="true"></span>
+                  <div class="casos-card-topo">
+                    <div class="casos-rotulo"><h3>Puericultura e recém-nascido</h3><p>Acompanhamento de peso, desenvolvimento, vacinação e prevenção desde os primeiros dias de vida.</p></div>
+                    <a class="casos-ir" href="https://wa.me/5519989362112?text=Ol%C3%A1%2C%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20puericultura%20e%20consulta%20de%20rec%C3%A9m-nascido%20com%20a%20Dra.%20Kelly%20Barbi." target="_blank" rel="noopener" tabindex="-1" aria-label="Falar sobre Puericultura e recém-nascido no WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+                  </div>
+                </div>
+              </article>
+              <article class="casos-card" data-pos="2" role="group" aria-roledescription="slide" aria-label="3 de 5: Alergologia pediátrica">
+                <div class="casos-card-in">
+                  <div class="casos-card-media"><picture>
+                    <source type="image/avif" srcset="assets/kb-servico-alergologia-480.avif 480w, assets/kb-servico-alergologia-800.avif 800w" sizes="(max-width: 720px) 268px, 372px">
+                    <source type="image/webp" srcset="assets/kb-servico-alergologia-480.webp 480w, assets/kb-servico-alergologia-800.webp 800w" sizes="(max-width: 720px) 268px, 372px">
+                    <img src="assets/kb-servico-alergologia-800.webp" alt="Dra. Kelly Barbi brincando com um menino durante atendimento de alergologia pediátrica" width="800" height="1000" loading="lazy" decoding="async" draggable="false">
+                  </picture></div>
+                  <span class="casos-card-veu" aria-hidden="true"></span>
+                  <div class="casos-card-topo">
+                    <div class="casos-rotulo"><h3>Alergologia pediátrica</h3><p>Investigação de rinite, asma, dermatite atópica, urticária e alergias alimentares, com orientação sobre testes alérgicos.</p></div>
+                    <a class="casos-ir" href="https://wa.me/5519989362112?text=Ol%C3%A1%2C%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20a%20Consulta%20Pedi%C3%A1trica%20em%20Alergologia%20e%20Investiga%C3%A7%C3%A3o%20Al%C3%A9rgica%20com%20a%20Dra.%20Kelly%20Barbi." target="_blank" rel="noopener" tabindex="-1" aria-label="Falar sobre Alergologia pediátrica no WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+                  </div>
+                </div>
+              </article>
+              <article class="casos-card" data-pos="-2" role="group" aria-roledescription="slide" aria-label="4 de 5: TEA e TDAH">
+                <div class="casos-card-in">
+                  <div class="casos-card-media"><picture>
+                    <source type="image/avif" srcset="assets/kb-servico-neurodesenvolvimento-480.avif 480w, assets/kb-servico-neurodesenvolvimento-800.avif 800w" sizes="(max-width: 720px) 268px, 372px">
+                    <source type="image/webp" srcset="assets/kb-servico-neurodesenvolvimento-480.webp 480w, assets/kb-servico-neurodesenvolvimento-800.webp 800w" sizes="(max-width: 720px) 268px, 372px">
+                    <img src="assets/kb-servico-neurodesenvolvimento-800.webp" alt="Brinquedos educativos usados na avaliação do desenvolvimento infantil" width="800" height="1000" loading="lazy" decoding="async" draggable="false">
+                  </picture></div>
+                  <span class="casos-card-veu" aria-hidden="true"></span>
+                  <div class="casos-card-topo">
+                    <div class="casos-rotulo"><h3>TEA e TDAH</h3><p>Triagem e acompanhamento pediátrico no neurodesenvolvimento, em diálogo com família, terapeutas e escola.</p></div>
+                    <a class="casos-ir" href="https://wa.me/5519989362112?text=Ol%C3%A1%2C%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20Avalia%C3%A7%C3%A3o%20e%20Acompanhamento%20Pedi%C3%A1trico%20em%20Autismo%20(TEA)%20e%20neurodesenvolvimento." target="_blank" rel="noopener" tabindex="-1" aria-label="Falar sobre TEA e TDAH no WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+                  </div>
+                </div>
+              </article>
+              <article class="casos-card" data-pos="-1" role="group" aria-roledescription="slide" aria-label="5 de 5: Consultório no Jardim Santa Maria">
+                <div class="casos-card-in">
+                  <div class="casos-card-media"><picture>
+                    <source type="image/avif" srcset="assets/kb-servico-consultorio-480.avif 480w, assets/kb-servico-consultorio-800.avif 800w" sizes="(max-width: 720px) 268px, 372px">
+                    <source type="image/webp" srcset="assets/kb-servico-consultorio-480.webp 480w, assets/kb-servico-consultorio-800.webp 800w" sizes="(max-width: 720px) 268px, 372px">
+                    <img src="assets/kb-servico-consultorio-800.webp" alt="Recepção do consultório Dra. Kelly Barbi Pediatria e Alergia em Mococa" width="800" height="1000" loading="lazy" decoding="async" draggable="false">
+                  </picture></div>
+                  <span class="casos-card-veu" aria-hidden="true"></span>
+                  <div class="casos-card-topo">
+                    <div class="casos-rotulo"><h3>Consultório no Jardim Santa Maria</h3><p>Um espaço acolhedor, pensado para crianças e famílias, na R. Alexandre Cunali, 143, em Mococa.</p></div>
+                    <a class="casos-ir" href="https://wa.me/5519989362112?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta%20no%20consult%C3%B3rio%20da%20Dra.%20Kelly%20Barbi%20em%20Mococa." target="_blank" rel="noopener" tabindex="-1" aria-label="Falar sobre Consultório no Jardim Santa Maria no WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+                  </div>
+                </div>
+              </article>
             </div>
-            <a class="card-link" href="https://wa.me/5519989362112?text=Ol%C3%A1%2C%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20a%20Consulta%20Pedi%C3%A1trica%20Humanizada%20e%20Investigativa%20com%20a%20Dra.%20Kelly%20Barbi." target="_blank" rel="noopener" data-cta-context="whatsapp_servico_pediatria">Agendar consulta pediátrica ↗</a>
-          </article>
-
-          <article class="service-card">
-            <div>
-              <h3>Consulta Pediátrica em Alergologia e Investigação Alérgica</h3>
-              <p>Atendimento com foco em alergologia pediátrica em Mococa para investigação de rinite alérgica, asma, dermatite atópica, urticária e alergias alimentares, com orientação sobre testes alérgicos e prevenção.</p>
-            </div>
-            <a class="card-link" href="https://wa.me/5519989362112?text=Ol%C3%A1%2C%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20a%20Consulta%20Pedi%C3%A1trica%20em%20Alergologia%20e%20Investiga%C3%A7%C3%A3o%20Al%C3%A9rgica%20com%20a%20Dra.%20Kelly%20Barbi." target="_blank" rel="noopener" data-cta-context="whatsapp_servico_alergologia">Falar sobre alergologia infantil ↗</a>
-          </article>
-
-          <article class="service-card">
-            <div>
-              <h3>Avaliação e Acompanhamento Pediátrico em Autismo (TEA)</h3>
-              <p>Escuta acolhedora e observação clínica voltada aos transtornos do neurodesenvolvimento infantil, incluindo triagem e acompanhamento pediátrico em autismo (TEA) e TDAH em diálogo com família, terapeutas e escola.</p>
-            </div>
-            <a class="card-link" href="https://wa.me/5519989362112?text=Ol%C3%A1%2C%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20Avalia%C3%A7%C3%A3o%20e%20Acompanhamento%20Pedi%C3%A1trico%20em%20Autismo%20(TEA)%20e%20neurodesenvolvimento." target="_blank" rel="noopener" data-cta-context="whatsapp_servico_tea_tdah">Conversar sobre avaliação TEA/TDAH ↗</a>
-          </article>
+          </div>
+          <div class="casos-rodape">
+            <p class="casos-rodape-texto"><strong>Dúvidas sobre indicação ou disponibilidade?</strong> Fale diretamente com o consultório.</p>
+            <a class="btn-casos" href="https://wa.me/5519989362112?text=Ol%C3%A1%2C%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20a%20consultas%20e%20especialidades%20com%20a%20Dra.%20Kelly%20Barbi." target="_blank" rel="noopener" data-cta-context="whatsapp_atendimento"><span>Conversar sobre o atendimento</span><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.2 8.2 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23-1.48 0-2.93-.39-4.19-1.15l-.3-.17-3.12.82.83-3.04-.2-.32a8.19 8.19 0 0 1-1.26-4.38c.01-4.54 3.7-8.24 8.25-8.24Z"/></svg></a>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="reviews" id="depoimentos">
-      <div class="wrap">
-        <div class="reviews-top">
-          <div class="section-head">
-            <span class="eyebrow">Palavras de quem já esteve por aqui</span>
-            <h2>O acolhimento também se sente.</h2>
-            <p>Relatos compartilhados por famílias no Perfil da Empresa no Google sobre o cuidado no consultório em Mococa.</p>
-          </div>
-          <!-- Nota 5,0 e contagem de 76 avaliações visualmente separadas (sem AggregateRating no JSON-LD) -->
-          <div class="google-proof" aria-label="Avaliação média 5,0 baseada em 76 avaliações no Google">
-            <div class="score-box">
-              <span class="score">5,0</span>
-              <span class="score-label">Nota média</span>
-            </div>
-            <div class="rating-copy">
-              <span class="stars" aria-hidden="true">★★★★★</span>
-              <small><strong>76 avaliações</strong> registradas no Google</small>
-            </div>
+    <section class="reviews kb-av" id="depoimentos" aria-labelledby="avaliacoes-titulo">
+      <img class="kb-av-mark" src="assets/logo-mark.png" alt="" aria-hidden="true" loading="lazy">
+      <div class="wrap kb-av-grid">
+        <div class="kb-av-nota" aria-label="Avaliação média 5,0 baseada em 76 avaliações no Google">
+          <svg class="kb-av-ring" viewBox="0 0 200 200" aria-hidden="true">
+            <defs><linearGradient id="kbOuro" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#9c7650"/><stop offset="50%" stop-color="#ecd3b4"/><stop offset="100%" stop-color="#82566f"/></linearGradient></defs>
+            <circle cx="100" cy="100" r="94" fill="none" stroke="rgba(184,146,106,.2)" stroke-width="1.2"/>
+            <circle class="kb-av-arc" cx="100" cy="100" r="94" fill="none" stroke="url(#kbOuro)" stroke-width="2" stroke-linecap="round" pathLength="1"/>
+          </svg>
+          <div class="kb-av-centro">
+            <p class="kb-av-num" aria-hidden="true">5,0</p>
+            <div class="kb-av-stars" aria-hidden="true"><span class="kb-star" style="--s:0"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.7 6.3.9-4.55 4.43 1.07 6.27L12 17.1l-5.62 2.96 1.07-6.27L2.9 9.4l6.3-.9z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.7 6.3.9-4.55 4.43 1.07 6.27L12 17.1l-5.62 2.96 1.07-6.27L2.9 9.4l6.3-.9z"/></svg></span><span class="kb-star" style="--s:1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.7 6.3.9-4.55 4.43 1.07 6.27L12 17.1l-5.62 2.96 1.07-6.27L2.9 9.4l6.3-.9z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.7 6.3.9-4.55 4.43 1.07 6.27L12 17.1l-5.62 2.96 1.07-6.27L2.9 9.4l6.3-.9z"/></svg></span><span class="kb-star" style="--s:2"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.7 6.3.9-4.55 4.43 1.07 6.27L12 17.1l-5.62 2.96 1.07-6.27L2.9 9.4l6.3-.9z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.7 6.3.9-4.55 4.43 1.07 6.27L12 17.1l-5.62 2.96 1.07-6.27L2.9 9.4l6.3-.9z"/></svg></span><span class="kb-star" style="--s:3"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.7 6.3.9-4.55 4.43 1.07 6.27L12 17.1l-5.62 2.96 1.07-6.27L2.9 9.4l6.3-.9z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.7 6.3.9-4.55 4.43 1.07 6.27L12 17.1l-5.62 2.96 1.07-6.27L2.9 9.4l6.3-.9z"/></svg></span><span class="kb-star" style="--s:4"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.7 6.3.9-4.55 4.43 1.07 6.27L12 17.1l-5.62 2.96 1.07-6.27L2.9 9.4l6.3-.9z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.7 6.3.9-4.55 4.43 1.07 6.27L12 17.1l-5.62 2.96 1.07-6.27L2.9 9.4l6.3-.9z"/></svg></span></div>
+            <p class="kb-av-total" aria-hidden="true">76 avaliações · Google</p>
           </div>
         </div>
-        <div class="review-grid">
-          <article class="review"><div><span class="stars" aria-hidden="true">★★★★★</span><blockquote>“Sempre atenta, carinhosa, pergunta todos os detalhes e tira todas as dúvidas.”</blockquote></div><cite>Natália Cristina Severino</cite></article>
-          <article class="review"><div><span class="stars" aria-hidden="true">★★★★★</span><blockquote>“Consulta tranquila, ambiente acolhedor onde a criança se sente bem e segura.”</blockquote></div><cite>Damaris Augusto</cite></article>
-          <article class="review"><div><span class="stars" aria-hidden="true">★★★★★</span><blockquote>“Nota 10. Explicação clara e objetiva para os pais.”</blockquote></div><cite>Djalma Toledo</cite></article>
+        <div class="kb-av-texto">
+          <span class="eyebrow">Palavras de quem já esteve por aqui</span>
+          <h2 id="avaliacoes-titulo">O acolhimento também se sente.</h2>
+          <p>Relatos compartilhados por famílias no Perfil da Empresa no Google sobre o cuidado no consultório em Mococa.</p>
+          <ul class="kb-quotes">
+            <li class="kb-quote" style="--d:0"><blockquote>“Sempre atenta, carinhosa, pergunta todos os detalhes e tira todas as dúvidas.”</blockquote><cite><span class="kb-avatar" aria-hidden="true">N</span>Natália Cristina Severino</cite></li>
+            <li class="kb-quote" style="--d:1"><blockquote>“Consulta tranquila, ambiente acolhedor onde a criança se sente bem e segura.”</blockquote><cite><span class="kb-avatar" aria-hidden="true">D</span>Damaris Augusto</cite></li>
+            <li class="kb-quote" style="--d:2"><blockquote>“Nota 10. Explicação clara e objetiva para os pais.”</blockquote><cite><span class="kb-avatar" aria-hidden="true">D</span>Djalma Toledo</cite></li>
+          </ul>
+          <a class="kb-av-link" href="https://www.google.com/maps/search/?api=1&amp;query=Dra.+Kelly+Barbi+Pediatra+Mococa" target="_blank" rel="noopener">Ler as avaliações no Google<span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></span></a>
         </div>
+      </div>
+      <div class="kb-bands" aria-hidden="true">
+        <div class="kb-band kb-band--1"><span>Atenção aos detalhes<i></i></span><span>Acolhimento<i></i></span><span>Explicação clara<i></i></span><span>Ambiente seguro<i></i></span><span>Carinho<i></i></span><span>Escuta atenta<i></i></span><span>Atenção aos detalhes<i></i></span><span>Acolhimento<i></i></span><span>Explicação clara<i></i></span><span>Ambiente seguro<i></i></span><span>Carinho<i></i></span><span>Escuta atenta<i></i></span><span>Atenção aos detalhes<i></i></span><span>Acolhimento<i></i></span><span>Explicação clara<i></i></span><span>Ambiente seguro<i></i></span><span>Carinho<i></i></span><span>Escuta atenta<i></i></span></div>
+        <div class="kb-band kb-band--2"><span>Atenção aos detalhes<i></i></span><span>Acolhimento<i></i></span><span>Explicação clara<i></i></span><span>Ambiente seguro<i></i></span><span>Carinho<i></i></span><span>Escuta atenta<i></i></span><span>Atenção aos detalhes<i></i></span><span>Acolhimento<i></i></span><span>Explicação clara<i></i></span><span>Ambiente seguro<i></i></span><span>Carinho<i></i></span><span>Escuta atenta<i></i></span><span>Atenção aos detalhes<i></i></span><span>Acolhimento<i></i></span><span>Explicação clara<i></i></span><span>Ambiente seguro<i></i></span><span>Carinho<i></i></span><span>Escuta atenta<i></i></span></div>
       </div>
     </section>
 
-    <section class="about" id="sobre">
-      <div class="wrap">
-        <div class="about-grid">
-          <div>
+    <section class="about kb-sobre" id="sobre">
+      <div class="kb-sobre-grid">
+        <div class="kb-sobre-media">
+          <div class="kb-sobre-sticky">
+            <div class="kb-sobre-foto">
+              <div class="kb-sobre-clip"><picture>
+                <source type="image/avif" srcset="assets/kb-sobre-principal-640.avif 640w, assets/kb-sobre-principal-1066.avif 1066w" sizes="(min-width: 1024px) 50vw, 100vw">
+                <img src="assets/kb-sobre-principal-1066.webp" srcset="assets/kb-sobre-principal-640.webp 640w, assets/kb-sobre-principal-1066.webp 1066w" sizes="(min-width: 1024px) 50vw, 100vw" alt="Dra. Kelly Barbi, pediatra em Mococa, sorrindo em seu consultório" width="1066" height="1600" loading="lazy" decoding="async">
+              </picture></div>
+              <div class="kb-sobre-veu" aria-hidden="true"></div>
+              <div class="kb-sobre-assina"><p>Dra. Kelly Barbi</p><span>Pediatria e Alergia · Mococa</span></div>
+            </div>
+            <div class="kb-sobre-sec"><picture>
+              <source type="image/avif" srcset="assets/kb-sobre-sec-600.avif">
+              <img src="assets/kb-sobre-sec-600.webp" alt="Dra. Kelly Barbi brincando com uma criança durante a consulta" width="600" height="800" loading="lazy" decoding="async">
+            </picture></div>
+            <div class="kb-sobre-selo" aria-hidden="true"><img src="assets/logo-mark.png" alt=""></div>
+          </div>
+        </div>
+        <div class="kb-sobre-texto">
+          <div class="kb-sobre-in">
             <span class="eyebrow">Conheça a Dra. Kelly</span>
-            <h2>Medicina com espaço para ouvir e orientar.</h2>
             <!-- TODO: Confirmar número do CRM-SP e RQE da Dra. Kelly Barbi dos Santos Araújo para exibição institucional -->
-            <div class="about-card">
-              <span class="mark" aria-hidden="true">“</span>
-              <p>A Dra. Kelly Barbi dos Santos Araújo atua como pediatra em Mococa, com dedicação à pediatria geral, puericultura, alergologia pediátrica e acompanhamento dos transtornos do neurodesenvolvimento infantil (TEA e TDAH). Seu trabalho é voltado a apoiar crianças, adolescentes e famílias com investigação cuidadosa e comunicação clara.</p>
-            </div>
-            <p style="margin-top:22px">Acompanhe conteúdos informativos sobre saúde infantil no <a class="social" href="https://www.instagram.com/dra.kellybarbi/" target="_blank" rel="noopener">Instagram @dra.kellybarbi</a>.</p>
+            <h2 class="kb-blur">Medicina com espaço para ouvir e orientar.</h2>
+            <p class="kb-sobre-lead">Um trabalho voltado a apoiar crianças, adolescentes e famílias com investigação cuidadosa e comunicação clara.</p>
+            <p>A Dra. Kelly Barbi dos Santos Araújo atua como pediatra em Mococa, com dedicação à pediatria geral, puericultura, alergologia pediátrica e acompanhamento dos transtornos do neurodesenvolvimento infantil (TEA e TDAH).</p>
+            <p>Acompanhe conteúdos informativos sobre saúde infantil no <a class="social" href="https://www.instagram.com/dra.kellybarbi/" target="_blank" rel="noopener">Instagram @dra.kellybarbi</a>.</p>
+            <!-- TODO: Confirmar com a clínica quais cidades vizinhas (ex.: São José do Rio Pardo, Casa Branca, Arceburgo, Guaranésia, Monte Santo de Minas, Tapiratiba) devem ser listadas nominalmente -->
+            <figure class="kb-sobre-card" id="atendimento-mococa-regiao">
+              <span class="kb-sobre-aspas" aria-hidden="true">“</span>
+              <h3>Atendimento em Mococa e região</h3>
+              <p>Para famílias que buscam uma pediatra perto de mim em Mococa-SP, o consultório está localizado no bairro Jardim Santa Maria, com estrutura preparada para receber pacientes de todos os bairros de Mococa e famílias da região que desejam acompanhamento presencial em pediatria, alergologia infantil e neurodesenvolvimento.</p>
+              <figcaption><span></span><a href="#contato">Ver localização e mapa</a></figcaption>
+            </figure>
+            <ul class="kb-sobre-tags">
+              <li><span class="kb-dia" aria-hidden="true"></span>Pediatria geral</li><li><span class="kb-dia" aria-hidden="true"></span>Puericultura</li><li><span class="kb-dia" aria-hidden="true"></span>Alergologia pediátrica</li><li><span class="kb-dia" aria-hidden="true"></span>TEA e TDAH</li>
+            </ul>
+            <dl class="kb-sobre-nums">
+              <div><dt class="sr-only">Nota no Google</dt><dd data-count="5,0">5,0</dd><dd>Nota no Google</dd></div>
+              <div><dt class="sr-only">Avaliações de famílias</dt><dd data-count="76">76</dd><dd>Avaliações de famílias</dd></div>
+              <div><dt class="sr-only">Áreas de cuidado</dt><dd data-count="4">4</dd><dd>Áreas de cuidado</dd></div>
+            </dl>
           </div>
-          <picture>
-            <source type="image/avif" srcset="assets/dra-kelly-barbi-pediatra-mococa-480w.avif 480w, assets/dra-kelly-barbi-pediatra-mococa-768w.avif 768w, assets/dra-kelly-barbi-pediatra-mococa-1066w.avif 1066w" sizes="(max-width: 600px) 270px, (max-width: 900px) 480px, 510px">
-            <source type="image/webp" srcset="assets/dra-kelly-barbi-pediatra-mococa-480w.webp 480w, assets/dra-kelly-barbi-pediatra-mococa-768w.webp 768w, assets/dra-kelly-barbi-pediatra-mococa-1066w.webp 1066w" sizes="(max-width: 600px) 270px, (max-width: 900px) 480px, 510px">
-            <img class="about-image" src="assets/dra-kelly-barbi-pediatra-mococa.webp" alt="Dra. Kelly Barbi sorrindo enquanto acolhe uma criança durante atendimento pediátrico" width="1066" height="1600" loading="lazy" decoding="async">
-          </picture>
-        </div>
-
-        <!-- FASE 4 – Seção Atendimento em Mococa e região -->
-        <!-- TODO: Confirmar com a clínica quais cidades vizinhas (ex.: São José do Rio Pardo, Casa Branca, Arceburgo, Guaranésia, Monte Santo de Minas, Tapiratiba) devem ser listadas nominalmente -->
-        <div class="region-box" id="atendimento-mococa-regiao">
-          <div>
-            <h3>Atendimento em Mococa e região</h3>
-            <p>Para famílias que buscam uma pediatra perto de mim em Mococa-SP, o consultório está localizado no bairro Jardim Santa Maria, com estrutura preparada para receber pacientes de todos os bairros de Mococa e famílias da região que desejam acompanhamento presencial em pediatria, alergologia infantil e neurodesenvolvimento.</p>
-          </div>
-          <a class="button button-light" href="#contato">Ver localização e mapa</a>
         </div>
       </div>
     </section>
 
     <!-- FASE 4 – Seção de Perguntas Frequentes (FAQ visível idêntico ao schema FAQPage, respostas de 40–60 palavras para AEO) -->
-    <section class="faq" id="perguntas-frequentes" aria-labelledby="faq-titulo">
-      <div class="wrap">
-        <div class="section-head">
+    <section class="faq kb-faq" id="perguntas-frequentes" aria-labelledby="faq-titulo">
+      <div class="wrap kb-faq-grid">
+        <div class="kb-faq-side">
           <span class="eyebrow">Dúvidas frequentes</span>
           <h2 id="faq-titulo">Perguntas comuns sobre a consulta pediátrica em Mococa.</h2>
           <p>Respostas diretas sobre puericultura, alergologia pediátrica, avaliação de autismo (TEA), TDAH e agendamento.</p>
+          <div class="kb-faq-card">
+            <img class="kb-faq-mark" src="assets/logo-mark.png" alt="" aria-hidden="true" loading="lazy">
+            <div class="kb-faq-quem">
+              <img src="assets/kb-sobre-principal-640.webp" alt="" width="64" height="64" loading="lazy">
+              <div><p>Dra. Kelly Barbi</p><span>Pediatria e Alergia · Mococa</span></div>
+            </div>
+            <p class="kb-faq-msg">Não encontrou o que procurava? Envie uma mensagem: a equipe responde pelo WhatsApp.</p>
+            <a class="kb-faq-wa" href="https://wa.me/5519989362112?text=Ol%C3%A1%2C%20tenho%20uma%20d%C3%BAvida%20sobre%20o%20atendimento%20com%20a%20Dra.%20Kelly%20Barbi." target="_blank" rel="noopener" data-cta-context="whatsapp_faq"><span>Conversar no WhatsApp</span><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M20 11.5a8.3 8.3 0 0 1-12.3 7.3L4 20l1.2-3.5A8.3 8.3 0 1 1 20 11.5Z"/></svg></i></a>
+            <small>(19) 98936-2112</small>
+          </div>
         </div>
         <div class="faq-list">
           <details class="faq-item" open>
-            <summary><h3>Quando levar o bebê ao pediatra pela primeira vez?</h3><span class="faq-icon" aria-hidden="true">+</span></summary>
+            <summary><span class="kb-faq-n" aria-hidden="true">01</span><h3>Quando levar o bebê ao pediatra pela primeira vez?</h3><span class="faq-icon" aria-hidden="true">+</span></summary>
             <div class="faq-answer"><p>A primeira consulta de recém-nascido geralmente ocorre na primeira semana após a alta da maternidade, seguida de retornos regulares de puericultura. Nesse encontro em Mococa, a Dra. Kelly Barbi avalia ganho de peso, amamentação, sono, vacinas, testes de triagem neonatal e acolhe todas as dúvidas da família com tranquilidade.</p></div>
           </details>
           <details class="faq-item">
-            <summary><h3>Como funciona a consulta pediátrica em alergologia e investigação alérgica?</h3><span class="faq-icon" aria-hidden="true">+</span></summary>
+            <summary><span class="kb-faq-n" aria-hidden="true">02</span><h3>Como funciona a consulta pediátrica em alergologia e investigação alérgica?</h3><span class="faq-icon" aria-hidden="true">+</span></summary>
             <div class="faq-answer"><p>Na Consulta Pediátrica em Alergologia e Investigação Alérgica, a médica analisa detalhadamente o histórico clínico, a rotina alimentar e o ambiente da criança para investigar rinite, asma, dermatite atópica ou alergias alimentares. Quando clinicamente indicado, orienta testes alérgicos específicos e constrói um plano individualizado de prevenção e controle.</p></div>
           </details>
           <details class="faq-item">
-            <summary><h3>Como funciona a avaliação pediátrica para suspeita de autismo (TEA) e TDAH?</h3><span class="faq-icon" aria-hidden="true">+</span></summary>
+            <summary><span class="kb-faq-n" aria-hidden="true">03</span><h3>Como funciona a avaliação pediátrica para suspeita de autismo (TEA) e TDAH?</h3><span class="faq-icon" aria-hidden="true">+</span></summary>
             <div class="faq-answer"><p>A Avaliação e Acompanhamento Pediátrico em Autismo (TEA) e TDAH envolve escuta atenta do relato familiar e escolar, além da observação cuidadosa dos marcos do neurodesenvolvimento infantil, comunicação, interação social e atenção. O acompanhamento é contínuo e integrado com terapeutas e escola, respeitando o ritmo único de cada criança.</p></div>
           </details>
           <details class="faq-item">
-            <summary><h3>Até qual idade a Dra. Kelly Barbi realiza o acompanhamento pediátrico?</h3><span class="faq-icon" aria-hidden="true">+</span></summary>
+            <summary><span class="kb-faq-n" aria-hidden="true">04</span><h3>Até qual idade a Dra. Kelly Barbi realiza o acompanhamento pediátrico?</h3><span class="faq-icon" aria-hidden="true">+</span></summary>
             <div class="faq-answer"><p>O acompanhamento no consultório em Mococa abrange todas as fases do desenvolvimento, desde a primeira consulta de recém-nascido e lactente, passando pela infância, até a adolescência. As consultas de puericultura acompanham crescimento físico, nutrição, calendário vacinal, saúde emocional e prevenção em cada etapa da vida.</p></div>
           </details>
           <details class="faq-item">
-            <summary><h3>O que diferencia a Consulta Pediátrica Humanizada e Investigativa?</h3><span class="faq-icon" aria-hidden="true">+</span></summary>
+            <summary><span class="kb-faq-n" aria-hidden="true">05</span><h3>O que diferencia a Consulta Pediátrica Humanizada e Investigativa?</h3><span class="faq-icon" aria-hidden="true">+</span></summary>
             <div class="faq-answer"><p>A Consulta Pediátrica Humanizada e Investigativa prioriza o tempo de escuta, o vínculo de confiança com a criança e a investigação cuidadosa de sintomas recorrentes, rotina de sono, alimentação e desenvolvimento. Os pais recebem explicações claras e acessíveis para participar ativamente de cada decisão sobre o cuidado infantil.</p></div>
           </details>
           <details class="faq-item">
-            <summary><h3>Onde fica o consultório da pediatra em Mococa e como chegar?</h3><span class="faq-icon" aria-hidden="true">+</span></summary>
+            <summary><span class="kb-faq-n" aria-hidden="true">06</span><h3>Onde fica o consultório da pediatra em Mococa e como chegar?</h3><span class="faq-icon" aria-hidden="true">+</span></summary>
             <div class="faq-answer"><p>O consultório da Dra. Kelly Barbi está localizado na Rua Alexandre Cunali, 143, no bairro Jardim Santa Maria, em Mococa - SP (CEP 13730-270). O espaço foi planejado para acolher crianças e famílias de Mococa e região com conforto, fácil acesso e rota direta pelo Google Maps.</p></div>
           </details>
           <details class="faq-item">
-            <summary><h3>Como agendar uma consulta ou solicitar entrada na lista de espera?</h3><span class="faq-icon" aria-hidden="true">+</span></summary>
+            <summary><span class="kb-faq-n" aria-hidden="true">07</span><h3>Como agendar uma consulta ou solicitar entrada na lista de espera?</h3><span class="faq-icon" aria-hidden="true">+</span></summary>
             <div class="faq-answer"><p>O contato para informações sobre agendamento ou solicitação de inclusão na lista de espera é realizado diretamente com a equipe pelo WhatsApp no número (19) 98936-2112. Basta clicar nos botões de atendimento desta página para enviar uma mensagem pré-preenchida e verificar a disponibilidade de horários.</p></div>
           </details>
         </div>
       </div>
     </section>
 
-    <section class="wait" id="lista-de-espera">
-      <div class="wrap">
-        <div class="wait-panel">
-          <div>
-            <span class="eyebrow">Próximo passo</span>
-            <h2>Quer saber sobre disponibilidade de atendimento?</h2>
-            <p>Envie uma mensagem para a equipe pelo WhatsApp. Se desejar, peça para ser considerada na lista de espera; a equipe poderá confirmar disponibilidade e próximos passos.</p>
-          </div>
-          <div class="wait-action">
-            <a class="button" href="https://wa.me/5519989362112?text=Ol%C3%A1%2C%20gostaria%20de%20entrar%20na%20lista%20de%20espera%20e%20saber%20sobre%20disponibilidade%20de%20atendimento%20com%20a%20Dra.%20Kelly%20Barbi." target="_blank" rel="noopener" data-cta-context="whatsapp_lista_espera">
+    <section class="wait kb-cta" id="lista-de-espera">
+      <div class="kb-cta-halo" aria-hidden="true"></div>
+      <img class="kb-cta-mark" src="assets/logo-mark.png" alt="" aria-hidden="true" loading="lazy">
+      <div class="wrap kb-cta-grid">
+        <div>
+          <span class="eyebrow">Próximo passo</span>
+          <h2 class="kb-blur">Quer saber sobre disponibilidade de atendimento?</h2>
+          <span class="kb-cta-linha" aria-hidden="true"></span>
+          <p>Envie uma mensagem para a equipe pelo WhatsApp. Se desejar, peça para ser considerada na lista de espera; a equipe poderá confirmar disponibilidade e próximos passos.</p>
+          <div class="kb-cta-acoes">
+            <a class="kb-cta-btn" href="https://wa.me/5519989362112?text=Ol%C3%A1%2C%20gostaria%20de%20entrar%20na%20lista%20de%20espera%20e%20saber%20sobre%20disponibilidade%20de%20atendimento%20com%20a%20Dra.%20Kelly%20Barbi." target="_blank" rel="noopener" data-cta-context="whatsapp_lista_espera">
               <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 11.5a8.3 8.3 0 0 1-12.3 7.3L4 20l1.2-3.5A8.3 8.3 0 1 1 20 11.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 8.5c.2 2.5 2 4.3 4.5 5l1-.9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
               Solicitar entrada na lista
             </a>
-            <small>O contato é feito diretamente pelo WhatsApp. Não envie informações médicas ou dados sensíveis da criança por este link.</small>
+            <a class="kb-cta-btn kb-cta-btn--ghost" href="#contato">Ver localização</a>
+          </div>
+          <small>O contato é feito diretamente pelo WhatsApp. Não envie informações médicas ou dados sensíveis da criança por este link.</small>
+          <ul class="kb-cta-selos">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2.8l2.8 5.7 6.3.9-4.55 4.43 1.07 6.27L12 17.1l-5.62 2.96 1.07-6.27L2.9 9.4l6.3-.9z"/></svg>5,0 no Google · 76 avaliações</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Jardim Santa Maria · Mococa</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7.5-4.3-7.5-10.4A4.2 4.2 0 0 1 12 8a4.2 4.2 0 0 1 7.5 2.6C19.5 16.7 12 21 12 21Z"/></svg>Pediatria e Alergia</li>
+          </ul>
+        </div>
+        <div class="kb-cta-foto">
+          <span class="kb-cta-orbita" aria-hidden="true"></span>
+          <span class="kb-cta-moldura" aria-hidden="true"></span>
+          <div class="kb-cta-arco">
+            <img src="assets/kb-servico-alergologia-800.webp" alt="Dra. Kelly Barbi em atendimento com uma criança" width="800" height="1000" loading="lazy" decoding="async">
+            <p>Dra. Kelly Barbi</p>
           </div>
         </div>
       </div>
@@ -525,9 +645,9 @@
               <div class="contact-caption">Um espaço pensado para acolher.</div>
             </div>
             <div class="map-embed">
-              <iframe title="Localização do consultório da Dra. Kelly Barbi em R. Alexandre Cunali, 143 - Jardim Santa Maria, Mococa - SP" data-map-src="https://maps.google.com/maps?q=R.+Alexandre+Cunali,+143,+Mococa,+SP&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+              <iframe title="Localização do consultório da Dra. Kelly Barbi em R. Alexandre Cunali, 143 - Jardim Santa Maria, Mococa - SP" data-map-src="https://www.google.com/maps/embed?pb=!1m3!2m1!1sDra.+Kelly+Barbi+Pediatra%2C+R.+Alexandre+Cunali%2C+143+-+Jardim+Santa+Maria%2C+Mococa+-+SP%2C+13730-270!6i16" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
               <noscript>
-                <iframe title="Localização do consultório da Dra. Kelly Barbi em R. Alexandre Cunali, 143 - Jardim Santa Maria, Mococa - SP" src="https://maps.google.com/maps?q=R.+Alexandre+Cunali,+143,+Mococa,+SP&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe title="Localização do consultório da Dra. Kelly Barbi em R. Alexandre Cunali, 143 - Jardim Santa Maria, Mococa - SP" src="https://www.google.com/maps/embed?pb=!1m3!2m1!1sDra.+Kelly+Barbi+Pediatra%2C+R.+Alexandre+Cunali%2C+143+-+Jardim+Santa+Maria%2C+Mococa+-+SP%2C+13730-270!6i16" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
               </noscript>
             </div>
           </div>
@@ -536,12 +656,42 @@
     </section>
   </main>
 
-  <footer>
-    <div class="wrap footer-inner">
-      <div>
-        <div class="footer-brand">Dra. Kelly Barbi dos Santos Araújo</div>
-        <p>Pediatria, Alergologia Pediátrica e Neurodesenvolvimento · R. Alexandre Cunali, 143 – Jardim Santa Maria, Mococa - SP, 13730-270 · Tel.: (19) 98936-2112</p>
+  <footer class="kb-footer">
+    <div class="kb-footer-cta">
+      <div class="wrap kb-footer-cta-inner">
+        <p class="kb-footer-cta-title">Cuidado atento para cada fase da infância.</p>
+        <a class="button kb-footer-cta-btn" href="https://wa.me/5519989362112?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Dra.%20Kelly%20Barbi%20e%20gostaria%20de%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener" data-cta-context="whatsapp_rodape">Conversar com a equipe no WhatsApp</a>
       </div>
+    </div>
+    <div class="wrap kb-footer-grid">
+      <div class="kb-footer-col kb-footer-brand-col">
+        <img class="kb-footer-logo" src="assets/logo-dra-kelly-barbi-pediatra-mococa-124w.webp" alt="" width="62" height="62" loading="lazy">
+        <div class="footer-brand">Dra. Kelly Barbi dos Santos Araújo</div>
+        <p>Pediatria, Alergologia Pediátrica e Neurodesenvolvimento em Mococa - SP.</p>
+      </div>
+      <nav class="kb-footer-col" aria-label="Rodapé">
+        <strong>Navegação</strong>
+        <a href="#cuidado">O cuidado</a>
+        <a href="#atendimento">Especialidades</a>
+        <a href="#depoimentos">Depoimentos</a>
+        <a href="#sobre">A Dra. Kelly</a>
+        <a href="#perguntas-frequentes">Dúvidas</a>
+        <a href="#contato">Localização</a>
+      </nav>
+      <div class="kb-footer-col">
+        <strong>Contato</strong>
+        <a href="tel:+5519989362112">(19) 98936-2112</a>
+        <a href="https://wa.me/5519989362112?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Dra.%20Kelly%20Barbi%20e%20gostaria%20de%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener">WhatsApp da equipe</a>
+        <a href="https://www.instagram.com/dra.kellybarbi/" target="_blank" rel="noopener">Instagram @dra.kellybarbi</a>
+      </div>
+      <address class="kb-footer-col">
+        <strong>Consultório</strong>
+        <span>R. Alexandre Cunali, 143<br>Jardim Santa Maria · Mococa - SP<br>CEP 13730-270</span>
+        <a href="https://www.google.com/maps/dir/?api=1&amp;destination=R.+Alexandre+Cunali,+143+-+Jardim+Santa+Maria,+Mococa+-+SP,+13730-270" target="_blank" rel="noopener">Como chegar ↗</a>
+      </address>
+    </div>
+    <div class="kb-footer-mark" aria-hidden="true">Dra. Kelly Barbi</div>
+    <div class="wrap kb-footer-legal">
       <p>
         Conteúdo informativo em conformidade com as normas do CFM. A avaliação e as orientações devem ser feitas em consulta médica presencial.<br>
         <a href="https://www.instagram.com/dra.kellybarbi/" target="_blank" rel="noopener">Instagram @dra.kellybarbi</a> ·
@@ -550,6 +700,10 @@
       </p>
       <div class="footer-lgpd" id="privacidade">
         <strong>Política de Privacidade e Proteção de Dados (LGPD — Lei nº 13.709/2018):</strong> Esta página institucional não coleta dados clínicos nem utiliza cookies de rastreamento publicitário sem consentimento. Ao iniciar conversa voluntária pelo WhatsApp, seus dados de contato são utilizados exclusivamente pela equipe da clínica para retorno sobre agendamento ou lista de espera. Recomendamos não enviar laudos, exames ou dados médicos sensíveis da criança antes do atendimento presencial.
+      </div>
+      <div class="kb-footer-bottom">
+        <span>© Dra. Kelly Barbi · Pediatria e Alergia · Mococa - SP</span>
+        <a href="#inicio" class="kb-top">Voltar ao topo ↑</a>
       </div>
     </div>
   </footer>
@@ -571,5 +725,7 @@
   </script>
   -->
   <script src="assets/main.js" defer></script>
+  <script src="assets/premium.js" defer></script>
+  <script src="assets/casos.js" defer></script>
 </body>
 </html>
