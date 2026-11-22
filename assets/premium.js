@@ -228,3 +228,37 @@
   window.addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(upd); }, { passive: true });
   upd();
 })();
+
+/* 10. Menu do celular */
+(() => {
+  const btn = document.querySelector('.kb-burger');
+  const menu = document.getElementById('kb-menu');
+  if (!btn || !menu) return;
+  const root = document.documentElement;
+  let closeTimer = 0;
+  const setHead = () => {
+    const h = document.querySelector('.topbar');
+    if (h) root.style.setProperty('--kb-head', h.offsetHeight + 'px');
+  };
+  const open = () => {
+    clearTimeout(closeTimer);
+    setHead();
+    menu.hidden = false;
+    requestAnimationFrame(() => requestAnimationFrame(() => menu.classList.add('is-open')));
+    btn.setAttribute('aria-expanded', 'true');
+    btn.setAttribute('aria-label', 'Fechar menu');
+    root.classList.add('kb-menu-open');
+  };
+  const close = (focusBtn = true) => {
+    menu.classList.remove('is-open');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-label', 'Abrir menu');
+    root.classList.remove('kb-menu-open');
+    closeTimer = setTimeout(() => { menu.hidden = true; }, 700);
+    if (focusBtn) btn.focus({ preventScroll: true });
+  };
+  btn.addEventListener('click', () => (btn.getAttribute('aria-expanded') === 'true' ? close() : open()));
+  menu.addEventListener('click', e => { if (e.target.closest('a[href^="#"]')) close(false); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && root.classList.contains('kb-menu-open')) close(); });
+  window.matchMedia('(min-width: 901px)').addEventListener('change', e => { if (e.matches && root.classList.contains('kb-menu-open')) close(false); });
+})();

@@ -86,7 +86,7 @@
     @media(max-width:340px){.service-items{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px 8px}.service-item{font-size:.74rem;gap:6px}.service-item .bubble{width:30px;height:30px}.service-strip .wrap{width:calc(100% - 34px)}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}.motion-reveal,.motion-reveal.is-visible{opacity:1!important;transform:none!important}.image-reveal,.image-reveal.is-visible,.benefit-photo,.care-image{opacity:1!important;filter:none!important;scale:1!important;clip-path:none!important;translate:none!important;will-change:auto!important}.button,.button:hover,.button:active,.whatsapp-float,.whatsapp-float:hover,.service-card:hover,.review:hover,.about-card:hover,.pill:hover,.contact-row,.service-item .bubble,.brand-mark,.hero-photo:hover,.benefit-photo:hover,.care-image:hover,.about-image:hover,.contact-visual img:hover{transform:none!important;scale:1!important;translate:none!important;will-change:auto!important}}
   </style>
-  <link rel="stylesheet" href="assets/premium.css?v=20261122">
+  <link rel="stylesheet" href="assets/premium.css?v=20261122b">
   <link rel="stylesheet" href="assets/casos.css?v=20261122">
 
   <!-- FASE 4 – Dados Estruturados JSON-LD: Physician + MedicalBusiness/LocalBusiness + FAQPage + BreadcrumbList (sem AggregateRating auto-publicado) -->
@@ -334,9 +334,27 @@
         <a href="#perguntas-frequentes">Dúvidas</a>
         <a class="button button-primary" href="https://wa.me/5519989362112?text=Ol%C3%A1%2C%20encontrei%20o%20site%20da%20Dra.%20Kelly%20Barbi%20e%20gostaria%20de%20conversar%20sobre%20uma%20consulta%20pedi%C3%A1trica%20em%20Mococa." target="_blank" rel="noopener" data-cta-context="whatsapp_topo">Falar no WhatsApp</a>
       </nav>
+      <button class="kb-burger" type="button" aria-expanded="false" aria-controls="kb-menu" aria-label="Abrir menu"><span></span><span></span></button>
     </div>
     <div class="scroll-progress" aria-hidden="true"></div>
   </header>
+  <div class="kb-menu" id="kb-menu" aria-label="Menu" hidden>
+    <nav aria-label="Menu do celular">
+      <ul class="kb-menu-links">
+        <li style="--i:0"><a href="#cuidado"><span>01</span>O cuidado</a></li>
+        <li style="--i:1"><a href="#atendimento"><span>02</span>Especialidades</a></li>
+        <li style="--i:2"><a href="#depoimentos"><span>03</span>Depoimentos</a></li>
+        <li style="--i:3"><a href="#sobre"><span>04</span>A Dra. Kelly</a></li>
+        <li style="--i:4"><a href="#perguntas-frequentes"><span>05</span>Dúvidas</a></li>
+        <li style="--i:5"><a href="#contato"><span>06</span>Como chegar</a></li>
+      </ul>
+    </nav>
+    <div class="kb-menu-pe">
+      <a class="kb-menu-wa" href="https://wa.me/5519989362112?text=Ol%C3%A1%2C%20encontrei%20o%20site%20da%20Dra.%20Kelly%20Barbi%20e%20gostaria%20de%20conversar%20sobre%20uma%20consulta%20pedi%C3%A1trica%20em%20Mococa." target="_blank" rel="noopener" data-cta-context="whatsapp_menu">Falar no WhatsApp<span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></span></a>
+      <p>R. Alexandre Cunali, 143 · Jardim Santa Maria · Mococa - SP</p>
+      <p><a href="tel:+5519989362112">(19) 98936-2112</a> · <a href="https://www.instagram.com/dra.kellybarbi/" target="_blank" rel="noopener">@dra.kellybarbi</a></p>
+    </div>
+  </div>
 
   <main>
     <section class="hero" id="inicio">
@@ -813,7 +831,7 @@
   </script>
   -->
   <script src="assets/main.js?v=20261122" defer></script>
-  <script src="assets/premium.js?v=20261122" defer></script>
+  <script src="assets/premium.js?v=20261122b" defer></script>
   <script src="assets/casos.js?v=20261122" defer></script>
 </body>
 </html>

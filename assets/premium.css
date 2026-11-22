@@ -605,3 +605,44 @@ body:has(.hero--full) .topbar:not(.is-scrolled) { background: transparent; borde
   .kb-sobre-sec { width: 34%; max-width: 200px; right: 20px; bottom: -36px; transform: rotate(-4deg) }
 }
 .kb-sobre-sec img, .kb-sobre-sec picture { display: block; width: 100%; height: auto }
+
+/* ===== MENU DO CELULAR ===== */
+.kb-burger { display: none; position: relative; width: 46px; height: 46px; border: 1px solid rgba(130, 86, 111, .18); border-radius: 50%; background: rgba(251, 248, 244, .75); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); cursor: pointer; flex: none }
+.kb-burger span { position: absolute; left: 14px; right: 14px; height: 1.6px; border-radius: 2px; background: #2f272d; transition: transform .5s cubic-bezier(.22, 1, .36, 1), top .5s cubic-bezier(.22, 1, .36, 1) }
+.kb-burger span:first-child { top: 18px }
+.kb-burger span:last-child { top: 26px }
+.kb-burger[aria-expanded="true"] span:first-child { top: 22px; transform: rotate(45deg) }
+.kb-burger[aria-expanded="true"] span:last-child { top: 22px; transform: rotate(-45deg) }
+.kb-burger:focus-visible { outline: 2px solid var(--plum); outline-offset: 3px }
+.kb-menu { position: fixed; inset: 0; z-index: 19; display: flex; flex-direction: column; justify-content: space-between; padding: calc(var(--kb-head, 68px) + 28px) 24px max(28px, env(safe-area-inset-bottom)); background: #fbf8f4; overflow-y: auto; clip-path: circle(0 at calc(100% - 41px) 34px); transition: clip-path .7s cubic-bezier(.22, 1, .36, 1), visibility 0s linear .7s; visibility: hidden }
+.kb-menu[hidden] { display: none }
+.kb-menu.is-open { clip-path: circle(150% at calc(100% - 41px) 34px); visibility: visible; transition: clip-path .8s cubic-bezier(.22, 1, .36, 1), visibility 0s }
+.kb-menu::before { content: ""; position: absolute; right: -120px; bottom: 80px; width: 360px; height: 360px; border-radius: 50%; background: radial-gradient(circle, rgba(234, 217, 223, .8), transparent 70%); pointer-events: none }
+.kb-menu-links { position: relative; list-style: none; margin: 0; padding: 0 }
+.kb-menu-links li { border-bottom: 1px solid rgba(47, 39, 45, .08); opacity: 0; transform: translateY(18px); transition: opacity .5s ease, transform .6s cubic-bezier(.22, 1, .36, 1) }
+.kb-menu.is-open .kb-menu-links li { opacity: 1; transform: none; transition-delay: calc(.18s + var(--i) * 60ms) }
+.kb-menu-links a { display: flex; align-items: baseline; gap: 16px; padding: 16px 0; font-family: Fraunces, serif; font-weight: 300; font-size: clamp(1.9rem, 1.4rem + 2.4vw, 2.4rem); line-height: 1.1; letter-spacing: -.02em; color: #2f272d; text-decoration: none }
+.kb-menu-links a span { font-family: Nunito, sans-serif; font-size: .72rem; font-weight: 800; letter-spacing: .12em; color: var(--gold) }
+.kb-menu-links a:active, .kb-menu-links a:hover { color: var(--plum) }
+.kb-menu-pe { position: relative; margin-top: 32px; opacity: 0; transition: opacity .5s ease }
+.kb-menu.is-open .kb-menu-pe { opacity: 1; transition-delay: .55s }
+.kb-menu-wa { display: flex; align-items: center; justify-content: space-between; padding: 8px 8px 8px 24px; border-radius: 999px; background: var(--plum); color: #fff; font-weight: 700; text-decoration: none }
+.kb-menu-wa span { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; background: rgba(255, 255, 255, .16) }
+.kb-menu-wa svg { width: 18px; height: 18px }
+.kb-menu-pe p { margin: 14px 0 0; font-size: .86rem; line-height: 1.6; color: #6b6068 }
+.kb-menu-pe p a { color: var(--plum); text-decoration: none; font-weight: 700 }
+html.kb-menu-open, html.kb-menu-open body { overflow: hidden }
+html.kb-menu-open .topbar { background: #fbf8f4 !important; box-shadow: none !important; border-bottom-color: transparent !important }
+html.kb-menu-open .whatsapp-float { opacity: 0; pointer-events: none }
+@media (max-width: 900px) {
+  .kb-burger { display: block }
+  .nav-links { margin-left: auto }
+}
+@media (max-width: 520px) {
+  .nav-links .button { display: none }
+}
+@media (min-width: 901px) { .kb-menu { display: none !important } }
+@media (prefers-reduced-motion: reduce) {
+  .kb-menu, .kb-menu.is-open { transition: none; clip-path: none }
+  .kb-menu-links li, .kb-menu-pe { opacity: 1; transform: none; transition: none }
+}
