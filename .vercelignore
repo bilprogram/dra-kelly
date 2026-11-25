@@ -1,0 +1,8 @@
+# Arquivos de trabalho que não devem ir para o site publicado
+assets-originais/
+PROMPT-HERO-GOOGLE-FLOW.md
+trocar-dominio.sh
+netlify.toml
+_headers
+.htaccess
+.DS_Store

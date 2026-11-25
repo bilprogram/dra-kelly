@@ -8,5 +8,6 @@ Instagram: @dra.kellybarbi
 /* SITE */
 Idioma: Português do Brasil (pt-BR)
 Padrões: HTML5 Semântico, CSS3 Modern Motion, WCAG 2.1 AA, Schema.org JSON-LD (Physician, MedicalBusiness, FAQPage)
-Última atualização: 2026-11-08
+Última atualização: 2026-11-24
+Site: https://pediatrakellybarbi.com.br
 

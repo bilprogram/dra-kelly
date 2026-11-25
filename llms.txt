@@ -3,21 +3,21 @@
 > Consultório médico de Pediatria, Alergologia Pediátrica e acompanhamento de Transtornos do Neurodesenvolvimento Infantil (incluindo TEA e TDAH) em Mococa - SP, com atendimento humanizado do recém-nascido à adolescência.
 
 ## Identificação e Contato (NAP)
-- **Profissional**: Dra. Kelly Barbi dos Santos Araújo (CRM-SP: [TODO: confirmar número do CRM-SP e RQE])
+- **Profissional**: Dra. Kelly Barbi dos Santos Araújo
 - **Especialidades e Áreas de Atuação**: Pediatria, Alergologia Pediátrica, Transtornos do Neurodesenvolvimento (acompanhamento de TDAH e TEA), puericultura, recém-nascidos até adolescência, testes alérgicos e prevenção.
 - **Endereço**: R. Alexandre Cunali, 143 – Jardim Santa Maria, Mococa - SP, 13730-270, Brasil
 - **Telefone e WhatsApp**: [+55 (19) 98936-2112](https://wa.me/5519989362112)
 - **Instagram**: [@dra.kellybarbi](https://www.instagram.com/dra.kellybarbi/)
-- **Site Oficial**: [Página Inicial — Dra. Kelly Barbi](https://SEU-DOMINIO.com.br/)
+- **Site Oficial**: [Página Inicial — Dra. Kelly Barbi](https://pediatrakellybarbi.com.br/)
 
 ## Páginas e Seções Principais
-- [Início e Apresentação](https://SEU-DOMINIO.com.br/#inicio): Pediatra em Mococa com atendimento acolhedor do recém-nascido à adolescência.
-- [Cuidado Pediátrico e Puericultura](https://SEU-DOMINIO.com.br/#cuidado): Consultas de rotina, avaliação do crescimento, sono e orientação familiar.
-- [Especialidades e Serviços](https://SEU-DOMINIO.com.br/#atendimento): Consulta Pediátrica Humanizada, Puericultura e recém-nascido, Alergologia Pediátrica, TEA e TDAH e o consultório no Jardim Santa Maria.
-- [Depoimentos](https://SEU-DOMINIO.com.br/#depoimentos): Nota 5,0 com 76 avaliações de famílias no Perfil da Empresa no Google.
-- [Sobre a Dra. Kelly](https://SEU-DOMINIO.com.br/#sobre): Trajetória e áreas de atuação; atendimento em Mococa e região.
-- [Perguntas Frequentes (FAQ)](https://SEU-DOMINIO.com.br/#perguntas-frequentes): Dúvidas comuns sobre primeira consulta do bebê, alergia infantil, TEA/TDAH e agendamento.
-- [Localização e Agendamento](https://SEU-DOMINIO.com.br/#contato): Endereço no Jardim Santa Maria, Mococa-SP, mapa e contato direto via WhatsApp.
+- [Início e Apresentação](https://pediatrakellybarbi.com.br/#inicio): Pediatra em Mococa com atendimento acolhedor do recém-nascido à adolescência.
+- [Cuidado Pediátrico e Puericultura](https://pediatrakellybarbi.com.br/#cuidado): Consultas de rotina, avaliação do crescimento, sono e orientação familiar.
+- [Especialidades e Serviços](https://pediatrakellybarbi.com.br/#atendimento): Consulta Pediátrica Humanizada, Puericultura e recém-nascido, Alergologia Pediátrica, TEA e TDAH e o consultório no Jardim Santa Maria.
+- [Depoimentos](https://pediatrakellybarbi.com.br/#depoimentos): Nota 5,0 com 76 avaliações de famílias no Perfil da Empresa no Google.
+- [Sobre a Dra. Kelly](https://pediatrakellybarbi.com.br/#sobre): Trajetória e áreas de atuação; atendimento em Mococa e região.
+- [Perguntas Frequentes (FAQ)](https://pediatrakellybarbi.com.br/#perguntas-frequentes): Dúvidas comuns sobre primeira consulta do bebê, alergia infantil, TEA/TDAH e agendamento.
+- [Localização e Agendamento](https://pediatrakellybarbi.com.br/#contato): Endereço no Jardim Santa Maria, Mococa-SP, mapa e contato direto via WhatsApp.
 
 ## Serviços Oferecidos
 1. **Consulta Pediátrica Humanizada e Investigativa**: Acompanhamento integral da criança e do adolescente, consultas de puericultura, primeira consulta do recém-nascido, avaliação do crescimento, alimentação, sono, vacinação e prevenção em saúde infantil.
@@ -34,3 +34,14 @@
 ## Diretrizes Éticas
 - Conteúdo estritamente informativo e educativo em conformidade com as normas do Conselho Federal de Medicina (CFM). A avaliação diagnóstica e a conduta terapêutica ocorrem exclusivamente em consulta médica presencial.
 
+
+## Perguntas Frequentes (resumo)
+- **Quando levar o bebê ao pediatra pela primeira vez?** Geralmente na primeira semana após a alta da maternidade, seguida de retornos regulares de puericultura (peso, amamentação, sono, vacinas e triagem neonatal).
+- **Como funciona a consulta em alergologia pediátrica?** Análise do histórico clínico, da alimentação e do ambiente da criança para investigar rinite, asma, dermatite atópica e alergias alimentares, com testes alérgicos quando clinicamente indicados.
+- **Como é a avaliação para suspeita de TEA ou TDAH?** Escuta do relato familiar e escolar e observação dos marcos do neurodesenvolvimento, com acompanhamento contínuo integrado a terapeutas e escola.
+- **Até que idade é feito o acompanhamento?** Do recém-nascido à adolescência.
+- **Como agendar?** Pelo WhatsApp (19) 98936-2112, com a equipe do consultório.
+
+## Arquivos para buscadores e IAs
+- Sitemap: https://pediatrakellybarbi.com.br/sitemap.xml
+- Robots: https://pediatrakellybarbi.com.br/robots.txt
